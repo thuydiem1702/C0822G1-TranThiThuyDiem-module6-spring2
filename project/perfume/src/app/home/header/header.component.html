@@ -1,16 +1,19 @@
-<header>
+<header >
+  <!--  <input type="checkbox" name="" id="chk1">-->
+  <!--  <img routerLink="/" style="width: 50px"-->
+  <!--       src="https://firebasestorage.googleapis.com/v0/b/c0822g1-mobile-shop-d949d.appspot.com/o/Thi%E1%BA%BFt%20k%E1%BA%BF%20ch%C6%B0a%20c%C3%B3%20t%C3%AAn.png?alt=media&token=07d45ac3-ddd9-4d3f-a2ab-1498a059e886">-->
+  <!--  <div class="logo">-->
   <div class="mid-header wid_100 d-flex align-items-center" style="padding: 20px">
     <div class="container px-md-0">
-
       <div class="row align-items-center">
         <div class="col-4 col-lg-2 header-right">
           <b> <span style="color: forestgreen">NUOCHOA</span>
             <span style="color: black">AUTHENTIC</span> </b>
         </div>
-        <div class="col-xl-5 col-lg-4 col-12 header-center" id="search-header">
+        <div class="col-xl-5 col-lg-4 col-12 header-center" id="search-header" style="width: 360px">
           <form action="/search" method="get" class="site-header__search small--hide input-group search-bar  "
                 role="search">
-            <input style="border-radius: 25px 0 0 25px" type="text" name="q" value="" autocomplete="off"
+            <input style="border-radius: 25px 0 0 25px;width: 100px" type="text" name="q" value="" autocomplete="off"
                    placeholder="Tìm kiếm sản phẩm..."
                    class="input-group-field auto-search form-control " required="">
             <input type="hidden" name="type" value="product">
@@ -18,56 +21,50 @@
 							<button type="submit" class="btn  icon-fallback-text h-100"
                       style="background-color:forestgreen;border-radius: 0 25px 25px 0 ;margin-left: 5px">
 								<span class="fa fa-search" style="color:white;">
-                <img src="../../../assets/icons8-search-64.png" height="32" width="32"/></span>
+<!--                <img src="../../../assets/icons8-search-64.png" height="32" width="32"/>-->
+                </span>
 							</button>
 						</span>
           </form>
         </div>
-        <div class="col-4 col-xl-5 col-lg-6 ">
+        <div class="col-4 col-xl-5 col-lg-6 " style="width: 610px">
           <ul class="header-left mb-0 float-right list-unstyled  d-flex align-items-center">
             <li class='media d-lg-flex d-none hotline '>
               <img class="align-self-center mr-3 lazyload"
                    src="//theme.hstatic.net/1000391653/1000983112/14/phone.png?v=554"
                    data-src="//theme.hstatic.net/1000391653/1000983112/14/phone.png?v=554" width="28" alt="phone"/>
 
-              <div class="media-body d-md-flex flex-column d-none ">
-                <span>Hỗ trợ khách hàng</span>
+              <div class="media-body d-md-flex flex-column d-none " style="width: 150px;margin-left: 10px">
+                <span><b>Hỗ trợ khách hàng</b></span>
                 <span style="color: darkgreen">
                   19009048
                 </span>
               </div>
             </li>
-            <li style="margin-left: 20px" class='login media d-lg-flex d-none '>
 
-              <img class="align-self-center mr-3 lazyload"
-                   src="//theme.hstatic.net/1000391653/1000983112/14/account.png?v=554"
-                   data-src="//theme.hstatic.net/1000391653/1000983112/14/account.png?v=554" width="28" alt="phone"/>
-              <div class="media-body d-md-flex flex-column d-none ">
-                <a routerLink="/login" class="d-block" title="Đăng nhập">
-                  Đăng nhập
-                </a>
-<!--                <small>-->
-<!--                  <a routerLink]="['/signup']" title="Đăng ký" class="font-weight: light">-->
-<!--                    Đăng ký-->
-<!--                  </a> </small>-->
+            <li *ngIf="role != 'ROLE_ADMIN'" style="cursor: pointer;width: 200px;font-size: 20px" routerLink="/cart"><a>
 
-              </div>
-            </li>
-            <li style="margin-left: 50px" class="cartgroup media d-lg-flex d-none">
-              <button class="btn btn-outline-success">
-                <div class="media-body d-md-flex flex-column d-none ">
-                <span><img src="../../../assets/icons8-shopping-cart-40.png" width="28" alt="phone"/>
-                  Giỏ hàng
-                </span>
-                </div>
-              </button>
-            </li>
+              <i style="color: limegreen" class="fa-sharp fa-solid fa-cart-shopping"></i>
+              <span style="height: 5px; width: 40px;position: absolute;"
+                    class="badge rounded-pill badge-notification bg-danger"></span><b>Giỏ hàng</b></a></li>
+            <li style="font-size: 20px;margin-left: 20px" *ngIf="isLogged == false"
+                routerLink="/login"><a><b>
+              Đăng nhập</b></a></li>
+            <li style="cursor: pointer;margin: 10px 10px 0 10px;width: 300px" *ngIf="isLogged == true"
+                (click)="checkProfile()">
+              <img src="{{user.avatar}}"
+                   style="height: 50px;width: 50px;border-radius: 50%;border: 1px solid cadetblue;margin-bottom: 10px">
+              <a style="font-weight: bold;font-size: 20px;height: 5px">
 
+                {{user.name}}</a></li>
+            <li style="cursor: pointer;width: 200px" *ngIf="isLogged == true" (click)="logout()"><a
+              style="font-weight: bold;font-size: 20px;height: 5px">
+              Đăng xuất</a></li>
           </ul>
         </div>
       </div>
     </div>
   </div>
-
+  <!--  </div>-->
 </header>
 

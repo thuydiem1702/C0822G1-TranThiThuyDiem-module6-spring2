@@ -1,22 +1,45 @@
-import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
+
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
+
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+
+import {environment} from '../environments/environment';
+import {HeaderComponent} from './home/header/header.component';
+import {FooterComponent} from './home/footer/footer.component';
 import {HomeModule} from './home/home.module';
-import {LoginModule} from './login/login.module';
+import {RouterModule} from '@angular/router';
+import {CommonModule} from '@angular/common';
+import {BrowserModule} from '@angular/platform-browser';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {AuthInterceptor} from './login/security/auth.interceptor';
+import {AngularFireStorage} from '@angular/fire/storage';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HeaderComponent,
+    FooterComponent
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     AppRoutingModule,
+    ReactiveFormsModule,
+    FormsModule,
     HomeModule,
-    LoginModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    HttpClientModule,
+    RouterModule,
+  ], schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true
+  }],
+  bootstrap: [AppComponent],
+  exports: []
 })
-export class AppModule { }
+export class AppModule {
+}

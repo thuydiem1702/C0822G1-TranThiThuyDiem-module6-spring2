@@ -1,34 +1,32 @@
-package com.be.model.account;
+package com.be.model.user;
 
 import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
 
 @Entity
-
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer roleId;
+    private Integer id;
     @Enumerated(EnumType.STRING)
     @NaturalId
     private RoleName name;
 
-
     public Role() {
     }
 
-    public Role(Integer roleId, RoleName name) {
-        this.roleId = roleId;
+    public Role(int id, RoleName name) {
+        this.id = id;
         this.name = name;
     }
 
-    public Integer getRoleId() {
-        return roleId;
+    public Integer getId() {
+        return id;
     }
 
-    public void setRoleId(Integer roleId) {
-        this.roleId = roleId;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public RoleName getName() {

@@ -1,4 +1,4 @@
-package com.be.model.account;
+package com.be.model.user;
 
 public enum RoleName {
     ROLE_CUSTOMER,

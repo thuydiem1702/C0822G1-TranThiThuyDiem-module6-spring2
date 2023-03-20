@@ -4,72 +4,99 @@
 <!--  <span color="bg932210" font="Anton" size="size24"></span>-->
 <!--</div>-->
 
-<div class="container mt-5 mb-5">
-<!--  <div class="gallary-header text-center">-->
-<!--    <h1 style="width: 100%;background-color: darkslategrey;height: 20px;"><p class="cmtt"-->
-<!--                                                                       style="background-color: white;width: 30%;line-height: 4px;padding: 5px 5px 13px 5px;margin: auto">-->
-<!--      GIỎ HÀNG-->
-<!--    </p></h1>-->
+<!--<div class="container mt-5 mb-5">-->
+<!--  <h2 style="color: forestgreen;text-align: center;margin-top: 20px;margin-bottom: 20px"><b>GIỎ HÀNG</b></h2>-->
+<!--</div>-->
+<!--<div class="listcart" >-->
+<!--  <div class="item" proid="63" name="50ML#" >-->
+<!--    <ul>-->
+<!--      <div class="oneline" style="margin-left: 20px">-->
+<!--        <li class="hinhanh"><a href="" title="Nước hoa GUCCI BLOOM EDP 50ML 100ML 150ML<p>50ML </p>" target="_blank"><img src="https://nuochoamy.vn/upload/sanpham/large/nuoc-hoa-gucci-bloom-1592386114-c58e74.png" alt="Nước hoa GUCCI BLOOM EDP 50ML 100ML 150ML<p>50ML </p>"/></a></li>-->
+<!--        <li class="ten">Nước hoa GUCCI BLOOM EDP 50ML 100ML 150ML<p>50ML </p></li>-->
+<!--      </div>-->
+<!--      <li class="giaban" value=1990000>1,990,000</li>-->
+<!--      <li class="giacty" value=2190000>2,190,000</li>-->
+<!--      <li class="soluong"><input type="number" value="1" min="0"/></li>-->
+<!--      <li class="thanhtien"><span>1,990,000</span><p>Giao hàng ngay</p></li>-->
+<!--      <li class="delete">&nbsp;</li>-->
+<!--    </ul>-->
 <!--  </div>-->
-  <h2 style="color: forestgreen;text-align: center;margin-top: 20px;margin-bottom: 20px"><b>GIỎ HÀNG</b></h2>
+
+<!--  <div class="item" proid="650" name="90ML #">-->
+<!--    <ul>-->
+<!--      <div class="oneline" style="margin-left: 20px">-->
+<!--        <li class="hinhanh"><a href="nuoc-hoa-versace-bright-crystal-edt-90ml.html" title="Nước Hoa VERSACE BRIGHT CRYSTAL EDT 90ml<p>90ML  </p>" target="_blank"><img src="https://nuochoamy.vn/upload/sanpham/large/nuoc-hoa-versace-bright-crystal-edt-90ml-1593229311-496207.jpg" alt="Nước Hoa VERSACE BRIGHT CRYSTAL EDT 90ml<p>90ML  </p>"/></a></li>-->
+<!--        <li class="ten">Nước Hoa VERSACE BRIGHT CRYSTAL EDT 90ml<p>90ML  </p></li>-->
+<!--      </div>-->
+<!--      <li class="giaban" value=1950000>1,950,000</li>-->
+<!--      <li class="giacty" value=2100000>2,100,000</li>-->
+<!--      <li class="soluong"><input type="number" value="1" min="0"/></li>-->
+<!--      <li class="thanhtien"><span>1,950,000</span><p>Giao hàng ngay</p></li>-->
+<!--      <li class="delete">&nbsp;</li>-->
+<!--    </ul>-->
+<!--  </div>-->
+
+<!--  <div class="item total ">-->
+<!--    <ul>-->
+<!--      <div class="oneline">-->
+<!--        <li class="ten">&nbsp;</li>-->
+<!--        <li class="ten">&nbsp;</li>-->
+<!--        <li class="ten">&nbsp;</li>-->
+<!--      </div>-->
+<!--      <li class="giaban">&nbsp;</li>-->
+<!--      <li class="giacty">&nbsp;</li>-->
+<!--      <li class="soluong">&nbsp;</li>-->
+<!--      <li class="hinhanh" style="margin-left: 20px"><b>TỔNG TIỀN :</b></li>-->
+<!--      <li class="thanhtien" value="3940000"><b>3,940,000</b></li>-->
+<!--      <li class="delete none">&nbsp;</li>-->
+<!--    </ul>-->
+<!--  </div>-->
+
+<!--  <div class="item shipping hide ">-->
+<!--    <ul>-->
+<!--      <div class="oneline">-->
+<!--        <li class="hinhanh" style="margin-left: 20px"></li>-->
+<!--        <li class="ten">&nbsp;</li>-->
+<!--      </div>-->
+<!--      <li class="giaban">&nbsp;</li>-->
+<!--      <li class="giacty">&nbsp;</li>-->
+<!--      <li class="soluong">&nbsp;</li>-->
+<!--      <li class="thanhtoan" ><button class="btn btn-secondary" style="margin-right: 10px" >Tiếp tục mua hàng</button></li>-->
+<!--      <li class="thanhtoan" ><button class="btn btn-warning">Tiến hành thanh toán</button></li>-->
+<!--      <li class="delete none">&nbsp;</li>-->
+<!--    </ul>-->
+<!--  </div>-->
+<!--</div><br>-->
+
+<h1 class="text-center" style="margin-top: 150px">Giỏ Hàng</h1>
+<table class="table table-hover" *ngIf="length != 0">
+  <thead>
+  <tr class="bg-info">
+    <th>STT</th>
+    <th>Tên Sản Phẩm</th>
+    <th>Hình Ảnh</th>
+    <th>Đơn Giá</th>
+    <th>Số Lượng</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let x of carts;index as i">
+    <td>{{i + 1}}</td>
+    <td>{{x.name}}</td>
+    <td><img src="{{x.image}}" style="height: 90px;width: 90px"></td>
+<!--    <td>{{x.price | currency: 'VND': 'symbol'}}</td>-->
+    <td>{{x.quantity}}</td>
+  </tr>
+  <tr>
+    <td colspan="3">Tổng tiền</td>
+<!--    <td colspan="1">{{total  | currency: 'VND': 'symbol'}}</td>-->
+    <td colspan="1">
+      <button (click)="buy()" class="btn btn-outline-success">Thanh toán</button>
+    </td>
+  </tr>
+  </tbody>
+</table>
+<div *ngIf="length == 0" style="text-align: center;margin-top: 50px">
+  <img src="https://dieuhoanoithat.vn/public/frontend/images/cart-emty.png">
+  <h3 style="color: red">Giỏ hàng trống</h3>
 </div>
-<div class="listcart" >
-  <div class="item" proid="63" name="50ML#" >
-    <ul>
-      <div class="oneline" style="margin-left: 20px">
-        <li class="hinhanh"><a href="" title="Nước hoa GUCCI BLOOM EDP 50ML 100ML 150ML<p>50ML </p>" target="_blank"><img src="https://nuochoamy.vn/upload/sanpham/large/nuoc-hoa-gucci-bloom-1592386114-c58e74.png" alt="Nước hoa GUCCI BLOOM EDP 50ML 100ML 150ML<p>50ML </p>"/></a></li>
-        <li class="ten">Nước hoa GUCCI BLOOM EDP 50ML 100ML 150ML<p>50ML </p></li>
-      </div>
-      <li class="giaban" value=1990000>1,990,000</li>
-      <li class="giacty" value=2190000>2,190,000</li>
-      <li class="soluong"><input type="number" value="1" min="0"/></li>
-      <li class="thanhtien"><span>1,990,000</span><p>Giao hàng ngay</p></li>
-      <li class="delete">&nbsp;</li>
-    </ul>
-  </div>
-
-  <div class="item" proid="650" name="90ML #">
-    <ul>
-      <div class="oneline" style="margin-left: 20px">
-        <li class="hinhanh"><a href="nuoc-hoa-versace-bright-crystal-edt-90ml.html" title="Nước Hoa VERSACE BRIGHT CRYSTAL EDT 90ml<p>90ML  </p>" target="_blank"><img src="https://nuochoamy.vn/upload/sanpham/large/nuoc-hoa-versace-bright-crystal-edt-90ml-1593229311-496207.jpg" alt="Nước Hoa VERSACE BRIGHT CRYSTAL EDT 90ml<p>90ML  </p>"/></a></li>
-        <li class="ten">Nước Hoa VERSACE BRIGHT CRYSTAL EDT 90ml<p>90ML  </p></li>
-      </div>
-      <li class="giaban" value=1950000>1,950,000</li>
-      <li class="giacty" value=2100000>2,100,000</li>
-      <li class="soluong"><input type="number" value="1" min="0"/></li>
-      <li class="thanhtien"><span>1,950,000</span><p>Giao hàng ngay</p></li>
-      <li class="delete">&nbsp;</li>
-    </ul>
-  </div>
-
-  <div class="item total ">
-    <ul>
-      <div class="oneline">
-        <li class="ten">&nbsp;</li>
-        <li class="ten">&nbsp;</li>
-        <li class="ten">&nbsp;</li>
-      </div>
-      <li class="giaban">&nbsp;</li>
-      <li class="giacty">&nbsp;</li>
-      <li class="soluong">&nbsp;</li>
-      <li class="hinhanh" style="margin-left: 20px"><b>TỔNG TIỀN :</b></li>
-      <li class="thanhtien" value="3940000"><b>3,940,000</b></li>
-      <li class="delete none">&nbsp;</li>
-    </ul>
-  </div>
-
-  <div class="item shipping hide ">
-    <ul>
-      <div class="oneline">
-        <li class="hinhanh" style="margin-left: 20px"></li>
-        <li class="ten">&nbsp;</li>
-      </div>
-      <li class="giaban">&nbsp;</li>
-      <li class="giacty">&nbsp;</li>
-      <li class="soluong">&nbsp;</li>
-      <li class="thanhtoan" ><button class="btn btn-secondary" style="margin-right: 10px" >Tiếp tục mua hàng</button></li>
-      <li class="thanhtoan" ><button class="btn btn-warning">Tiến hành thanh toán</button></li>
-      <li class="delete none">&nbsp;</li>
-    </ul>
-  </div>
-</div><br>
