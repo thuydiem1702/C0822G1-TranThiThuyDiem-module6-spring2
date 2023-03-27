@@ -29,7 +29,6 @@
 }
 
 
-
 .overlay {
   /*position: absolute;*/
   bottom: 0;
@@ -49,3 +48,222 @@
 }
 
 /** {box-sizing: border-box}*/
+
+/** {*/
+/*  margin: 0;*/
+/*  padding: 0;*/
+/*}*/
+
+/*.carousel {*/
+/*  width: 100%;*/
+/*  position: relative;*/
+/*  margin-top: 70px;*/
+/*}*/
+
+/*.wrapper {*/
+/*  max-width: 1170px;*/
+/*}*/
+
+/*h3 {*/
+/*  font-size: 18px;*/
+/*  padding: 10px 20px;*/
+/*  display: inline-block;*/
+/*  background-color: #dddddd;*/
+/*  font-weight: 500;*/
+/*  margin-bottom: 10px;*/
+/*}*/
+
+/*ul.products {*/
+/*  display: flex;*/
+/*  flex-wrap: wrap;*/
+/*  list-style: none;*/
+/*  justify-content: center;*/
+/*  width: 100%;*/
+/*  margin-left: 40px;*/
+/*  margin-bottom: 0;*/
+/*}*/
+
+/*ul.products li {*/
+/*  flex-basis: 17%;*/
+/*  padding: 0;*/
+/*  box-sizing: border-box;*/
+/*  margin: 10px 7.5px;*/
+/*}*/
+
+/*ul.products li .product-top {*/
+/*  position: relative;*/
+/*  overflow: hidden;*/
+/*}*/
+
+/*ul.products li .product-top .product-thumb {*/
+/*  display: block;*/
+/*  height: 0;*/
+/*  padding-bottom: 100%;*/
+/*  position: relative;*/
+/*  overflow: hidden;*/
+/*}*/
+
+
+/*ul.products li:hover .product-top .product-thumb img {*/
+/*  transform: scale(1.1);*/
+/*  transition: 0.5s ease-in-out;*/
+/*}*/
+
+/*ul.products li .product-top .product-thumb img {*/
+/*  display: block;*/
+/*  width: 100%;*/
+/*  height: 200px;*/
+/*  position: absolute;*/
+/*  top: auto;*/
+/*  border-radius: 10px;*/
+/*}*/
+
+/*ul.products li .product-top a.buy-now {*/
+/*  text-transform: uppercase;*/
+/*  text-decoration: none;*/
+/*  text-align: center;*/
+/*  display: block;*/
+/*  background-color: orange;*/
+/*  color: white;*/
+/*  padding: 10px 0;*/
+/*  position: absolute;*/
+/*  width: 100%;*/
+/*  bottom: -80px;*/
+/*  transition: 0.5s ease-in-out;*/
+/*  opacity: 0.75;*/
+/*}*/
+
+/*ul.products li:hover .product-top a.buy-now {*/
+/*  bottom: 0;*/
+/*}*/
+
+/*ul.products li .product-info {*/
+/*  padding: 10px 0;*/
+/*}*/
+
+/*ul.products li .product-info a {*/
+/*  display: block;*/
+/*  text-decoration: none;*/
+/*}*/
+
+/*ul.products li .product-info a.product-cat {*/
+/*  font-size: 12px;*/
+/*  text-transform: uppercase;*/
+/*  padding: 3px 0;*/
+/*}*/
+
+/*ul.products li .product-info a.product-name {*/
+/*  padding: 2px 0;*/
+/*  font-weight: 600;*/
+/*}*/
+
+/*div.previous {*/
+/*  width: 20px;*/
+/*  padding-top: 90px;*/
+/*  margin-right: 20px;*/
+/*}*/
+
+/*div.previous a, div.next a {*/
+
+/*}*/
+
+/*div.next {*/
+/*  width: 20px;*/
+/*  padding-top: 90px;*/
+/*  margin-left: 20px;*/
+/*}*/
+
+/*a:hover {*/
+/*  cursor: pointer;*/
+/*}*/
+
+/*.fade {*/
+/*  transition: 0.5s ease-in-out;*/
+/*}*/
+
+/*.modal-header {*/
+/*  background: linear-gradient(to bottom, orange, #FEB58A);*/
+/*  text-align: center;*/
+/*  border: none;*/
+/*}*/
+
+/*.modal-body {*/
+/*  !*background: linear-gradient(to bottom, #FEB58A, #ff665c);*!*/
+/*  display: inline-block;*/
+/*}*/
+
+
+/*.modal-body .card {*/
+/*  margin-left: 140px;*/
+/*}*/
+
+/*.modal-body .card {*/
+/*  max-width: 200px;*/
+/*  max-height: 300px;*/
+/*}*/
+
+/*.card-info ul li {*/
+/*  list-style: none;*/
+/*}*/
+
+/*.card-info ul li span {*/
+/*  display: block;*/
+/*}*/
+
+/*.modal-footer {*/
+/*  background: linear-gradient(to bottom, #00c6ff, #aaaaaa);*/
+/*  justify-content: center;*/
+/*}*/
+
+/*.modal-footer button {*/
+/*  background-color: orange;*/
+/*  color: black;*/
+/*  border: none;*/
+/*}*/
+
+/*.modal-footer button:hover {*/
+/*  background-color: yellow;*/
+/*  box-shadow: white;*/
+/*}*/
+
+/*table, th, td {*/
+/*  color: black;*/
+/*}*/
+
+/*table {*/
+/*  border: 1px solid black;*/
+/*  margin-top: 10px;*/
+/*  border-collapse: collapse;*/
+/*}*/
+
+/*.card-info table tr th {*/
+/*  padding: 5px 20px;*/
+/*}*/
+
+/*table th, td {*/
+/*  border: 1px solid black;*/
+/*}*/
+
+/*.product img {*/
+/*  border-radius: 0 !important;*/
+/*}*/
+
+/*.product {*/
+/*  background-color: lightgray;*/
+/*  margin-left: 0;*/
+/*}*/
+
+/*a span {*/
+/*  color: black;*/
+/*  background-color: orange;*/
+/*  height: 70px;*/
+/*  border-radius: 20px;*/
+/*  width: 33px;*/
+/*}*/
+
+/*.product-name {*/
+/*  font-weight: 600;*/
+/*}*/
+
+
+

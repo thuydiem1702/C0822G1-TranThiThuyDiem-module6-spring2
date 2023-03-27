@@ -1,4 +1,3 @@
-
 import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 
 import {AppRoutingModule} from './app-routing.module';
@@ -16,13 +15,14 @@ import {BrowserModule} from '@angular/platform-browser';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AuthInterceptor} from './login/security/auth.interceptor';
 import {AngularFireStorage} from '@angular/fire/storage';
+import {DetailPerfumeComponent} from './home/detail-perfume/detail-perfume.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    FooterComponent
-  ],
+    FooterComponent,
+    DetailPerfumeComponent],
   imports: [
     CommonModule,
     BrowserModule,

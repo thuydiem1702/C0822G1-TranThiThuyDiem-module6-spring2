@@ -1,23 +1,22 @@
 <div class="container-fluid">
-  <div class="titleheading"><h2 style="color: forestgreen;text-align: center;margin-top: 20px;margin-bottom: 20px"><b>Nước Hoa MONTBLANC EXPLORER EDP 100ML</b></h2><em></em></div>
+  <div class="titleheading"><h2 style="color: forestgreen;text-align: center;margin-top: 20px;margin-bottom: 20px"><b>
+    {{perfumesByQuantitySold.name}}
+  </b></h2><em></em></div>
   <div class="row">
     <div class="col-lg-6 col-sm-6">
-      <div class="swiper-slide"><img
-        src="https://nuochoamy.vn/upload/sanpham/large/nuoc-hoa-montblanc-explorer-edp-100ml-1592902621-98c39f.jpg"
-        style="width: 400px ; height: 500px ; margin-left: 70px " ></div>
+      <div class="swiper-slide"><img [src]="perfumesByQuantitySold.image"
+                                     style="width: 400px ; height: 500px ; margin-left: 70px "></div>
     </div>
     <div class="col-lg-6 col-sm-6">
-      <p class="category"><span><b>Phân Loại</b></span>: Nước Hoa Nam</p>
-      <p class="category"><span><b>Thương Hiệu</b></span>: Montblanc</p>
-      <p class="category"><span><b>Nhóm Hương</b></span>: Hương Gỗ Thơm</p>
-      <p class="category"><span><b>Mục Đích SD</b></span>: Mùa hè</p>
-      <p class="category"><span><b>Tình Trạng</b></span>: Đang bán</p>
-      <p class="category"><span><b>Nồng Độ</b></span>: EDP (Eau De Parfum)</p>
-      <p class="category"><span><b>Lượt Xem</b></span>: 13516</p>
+      <p class="category"><span><b>Phân Loại</b></span>: {{perfumesByQuantitySold.category.name}}</p>
+      <p class="category"><span><b>Thương Hiệu</b></span>: {{perfumesByQuantitySold.trademark.name}}</p>
+      <p class="category"><span><b>Nhóm Hương</b></span>: {{perfumesByQuantitySold.fragrant.name}}</p>
+      <p class="category"><span><b>Nồng Độ</b></span>: {{perfumesByQuantitySold.concentration.name}}</p>
+      <p class="category"><span><b>Mô tả</b></span>: {{perfumesByQuantitySold.description}}</p>
       <a class="listprice">
         <a giaban="2250000" giacty="2650000" name="100ML#"><span class="name"><em>Giao hàng ngay</em></span>
           <input type="number" min="0" value="1"/>
-          <h1 class="giaban"><b>&nbsp; 2,250,000đ</b></h1></a>
+          <h1 class="giaban"><b>&nbsp; {{perfumesByQuantitySold.price | currency:'VND':''}}đ</b></h1></a>
       </a>
       <div class="addtocart" style="background: #046056">Thêm vào giỏ hàng</div>
       <div class="addtocart" style="background: orangered">Mua ngay</div>

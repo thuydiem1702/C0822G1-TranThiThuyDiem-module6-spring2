@@ -1,4 +1,3 @@
-
 <nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="background-color: #046056">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">Trang chủ</a>
@@ -86,37 +85,20 @@
         </div>
       </div>
     </div>
+
     <div class="product_section_2 layout_padding">
       <div class="row">
-        <div class="col-lg-3 col-sm-6 ">
-          <div class="product_box " >
-            <div class="card card1" style="width: 17rem;height: 22rem;text-align: center;background: whitesmoke">
-              <div class="card-body card2 " >
-                <h4 class="bursh_text" style="color: forestgreen">CALVIN KLEIN</h4>
-                <p class="lorem_text">Nước Hoa Calvin Klein Be EDT 100ml</p>
-                <img src="../../../assets/cc-removebg-preview.png" style="width: 130px">
-                <h4 class="price_text">Giá: 1,307,000₫</h4>
-                <div class="buy_bt overlay" >
-                  <button class="btn  icon-fallback-text h-100" style="background-color:cornflowerblue">Xem chi tiết
-                  </button>
-                  <button class="btn  icon-fallback-text h-100" style="background-color:orange; margin-left: 10px">Mua
-                    ngay
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-3 col-sm-6">
+        <div class="col-lg-3 col-sm-6" *ngFor="let perfume of perfumesByQuantitySold">
           <div class="product_box">
             <div class="card card1" style="width: 17rem;height: 22rem;text-align: center;background: whitesmoke">
               <div class="card-body card2">
-                <h4 class="bursh_text" style="color: forestgreen">LAURELLE LONDON</h4>
-                <p class="lorem_text">Nước Hoa Nam Laurelle London Code Black Pour Homme EDT</p>
-                <img src="../../../assets/l-removebg-preview.png" class="image_1" style="width: 135px">
-                <h4 class="price_text">Giá: 660,000₫</h4>
+                <h4 class="bursh_text" style="color: forestgreen">{{perfume.trademark.name}}</h4>
+                <p class="lorem_text">{{perfume.name}}</p>
+                <img [src]="perfume.image" class="image_1" style="width: 135px;">
+                <h4 class="price_text">Giá: {{perfume.price | currency: "VND":''}}₫</h4>
                 <div class="buy_bt overlay">
-                  <button class="btn  icon-fallback-text h-100" style="background-color:cornflowerblue">Xem chi tiết
+                  <button class="btn  icon-fallback-text h-100" style="background-color:cornflowerblue"
+                          [routerLink]='["/detail",perfume.idPerfume]'>Xem chi tiết
                   </button>
                   <button class="btn  icon-fallback-text h-100" style="background-color:orange; margin-left: 10px">Mua
                     ngay
@@ -124,243 +106,63 @@
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-        <div class="col-lg-3 col-sm-6">
-          <div class="product_box">
-            <div class="card card1" style="width: 17rem;height: 22rem;text-align: center;background: whitesmoke">
-              <div class="card-body card2">
-                <h4 class="bursh_text" style="color: forestgreen">BERDOUES 1902</h4>
-                <p class="lorem_text">Nước Hoa Berdoues 1902 Freesia & Coton Eau De Toilette 100ml </p>
-
-                <img src="../../../assets/1902-removebg-preview.png" class="image_1" style="width: 135px">
-
-                <h4 class="price_text">Giá: 450,000₫</h4>
-                <div class="buy_bt overlay">
-                  <button class="btn  icon-fallback-text h-100" style="background-color:cornflowerblue">Xem chi tiết
-                  </button>
-                  <button class="btn  icon-fallback-text h-100" style="background-color:orange; margin-left: 10px">Mua
-                    ngay
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-3 col-sm-6">
-          <div class="product_box">
-            <div class="card card1" style="width: 17rem;height: 22rem;text-align: center;background: whitesmoke">
-              <div class="card-body card2">
-                <h4 class="bursh_text" style="color: forestgreen">LAURELLE LONDON</h4>
-                <p class="lorem_text">Nước Hoa Nam Laurelle London Twisted Soul Black 20ml </p>
-
-                <img src="../../../assets/ll-removebg-preview.png" class="image_1" style="width: 135px">
-                <h4 class="price_text">Giá: 180,000₫</h4>
-                <div class="buy_bt overlay">
-                  <button class="btn  icon-fallback-text h-100" style="background-color:cornflowerblue">Xem chi tiết
-                  </button>
-                  <button class="btn  icon-fallback-text h-100" style="background-color:orange; margin-left: 10px">Mua
-                    ngay
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <br>
-      <div class="row">
-        <div class="col-lg-3 col-sm-6">
-          <div class="product_box">
-            <div class="card card1" style="width: 17rem;height: 22rem;text-align: center;background: whitesmoke">
-              <div class="card-body card2">
-                <h4 class="bursh_text" style="color: forestgreen">LAURELLE LONDON</h4>
-                <p class="lorem_text">Nước Hoa Nữ Laurelle London Together Forever EDP</p>
-
-                <img src="../../../assets/aa-removebg-preview.png" class="image_1" style="width: 135px">
-                <h4 class="price_text">Giá: 420,000₫</h4>
-                <div class="buy_bt overlay">
-                  <button class="btn  icon-fallback-text h-100" style="background-color:cornflowerblue">Xem chi tiết
-                  </button>
-                  <button class="btn  icon-fallback-text h-100" style="background-color:orange; margin-left: 10px">Mua
-                    ngay
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-3 col-sm-6">
-          <div class="product_box">
-            <div class="card card1" style="width: 17rem;height: 22rem;text-align: center;background: whitesmoke">
-              <div class="card-body card2">
-                <h4 class="bursh_text" style="color: forestgreen">VERSACE</h4>
-                <p class="lorem_text">Nước Hoa Nam Versace Eros EDT 100ml</p>
-
-                <img src="../../../assets/b-removebg-preview.png" class="image_1" style="width: 135px">
-                <h4 class="price_text">Giá: 1,790,000₫</h4>
-                <div class="buy_bt overlay">
-                  <button class="btn  icon-fallback-text h-100" style="background-color:cornflowerblue">Xem chi tiết
-                  </button>
-                  <button class="btn  icon-fallback-text h-100" style="background-color:orange; margin-left: 10px">Mua
-                    ngay
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-3 col-sm-6">
-          <div class="product_box">
-            <div class="card card1" style="width: 17rem;height: 22rem;text-align: center;background: whitesmoke">
-              <div class="card-body card2">
-                <h4 class="bursh_text" style="color: forestgreen">LAURELLE LONDON</h4>
-                <p class="lorem_text">Nước Hoa Nam Laurelle London Twisted Soul White</p>
-
-                <img src="../../../assets/cc.png" class="image_1" style="width: 105px">
-                <h4 class="price_text">Giá: 190,000₫</h4>
-                <div class="buy_bt overlay">
-                  <button class="btn  icon-fallback-text h-100" style="background-color:cornflowerblue">Xem chi tiết
-                  </button>
-                  <button class="btn  icon-fallback-text h-100" style="background-color:orange; margin-left: 10px">Mua
-                    ngay
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-3 col-sm-6">
-          <div class="product_box">
-            <div class="card card1" style="width: 17rem;height: 22rem;text-align: center;background: whitesmoke">
-              <div class="card-body card2">
-                <h4 class="bursh_text" style="color: forestgreen">CALVIN KLEIN</h4>
-                <p class="lorem_text">Nước Hoa Calvin Klein Eternity Aqua For Men EDT </p>
-                <img src="../../../assets/d-removebg-preview.png" class="image_1" style="width: 135px;">
-                <h4 class="price_text">Giá: 1,550,000₫</h4>
-                <div class="buy_bt overlay">
-                  <button class="btn  icon-fallback-text h-100" style="background-color:cornflowerblue">Xem chi tiết
-                  </button>
-                  <button class="btn  icon-fallback-text h-100" style="background-color:orange; margin-left: 10px">Mua
-                    ngay
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <br>
-      <div class="row">
-        <div class="col-lg-3 col-sm-6">
-          <div class="product_box">
-            <div class="card card1" style="width: 17rem;height: 22rem;text-align: center;background: whitesmoke">
-              <div class="card-body card2">
-                <h4 class="bursh_text" style="color: forestgreen">NƯỚC HOA MINI</h4>
-                <p class="lorem_text">Combo Nước Hoa Mini Versace Eros Edt </p>
-
-                <img src="../../../assets/o-removebg-preview.png" class="image_1" style="width: 155px">
-                <h4 class="price_text">Giá: 420,000₫</h4>
-                <div class="buy_bt overlay">
-                  <button class="btn  icon-fallback-text h-100" style="background-color:cornflowerblue">Xem chi tiết
-                  </button>
-                  <button class="btn  icon-fallback-text h-100" style="background-color:orange; margin-left: 10px">Mua
-                    ngay
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-3 col-sm-6">
-          <div class="product_box">
-            <div class="card card1" style="width: 17rem;height: 22rem;text-align: center;background: whitesmoke">
-              <div class="card-body card2">
-                <h4 class="bursh_text" style="color: forestgreen">HUGO BOSS</h4>
-                <p class="lorem_text">Bộ Qùa Tặng Nước Hoa Nữ Hugo Boss Alive EDP 10ml-80ml</p>
-                <img src="../../../assets/booo-removebg-preview.png" class="image_1" style="width: 135px">
-                <h4 class="price_text">Giá: 1,790,000₫</h4>
-                <div class="buy_bt overlay">
-                  <button class="btn  icon-fallback-text h-100" style="background-color:cornflowerblue">Xem chi tiết
-                  </button>
-                  <button class="btn  icon-fallback-text h-100" style="background-color:orange; margin-left: 10px">Mua
-                    ngay
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-3 col-sm-6">
-          <div class="product_box">
-            <div class="card card1" style="width: 17rem;height: 22rem;text-align: center;background: whitesmoke">
-              <div class="card-body card2">
-                <h4 class="bursh_text" style="color: forestgreen">MARC JACOBS</h4>
-                <p class="lorem_text">Nước Hoa Nữ Marc Jacobs Perfect EDP 50ml</p>
-                <img src="../../../assets/hh-removebg-preview.png" class="image_1" style="width: 135px">
-                <h4 class="price_text">Giá: 2,140,000₫ </h4>
-                <div class="buy_bt overlay">
-                  <button class="btn  icon-fallback-text h-100" style="background-color:cornflowerblue">Xem chi tiết
-                  </button>
-                  <button class="btn  icon-fallback-text h-100" style="background-color:orange; margin-left: 10px">Mua
-                    ngay
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-3 col-sm-6">
-          <div class="product_box">
-            <div class="card card1" style="width: 17rem;height: 22rem;text-align: center;background: whitesmoke">
-              <div class="card-body card2">
-                <h4 class="bursh_text" style="color: forestgreen">CALVIN KLEIN</h4>
-                <p class="lorem_text">Combo 3 Nước Hoa Chiết Calvin Klein Be EDT</p>
-
-                <img src="../../../assets/33-removebg-preview.png" class="image_1" style="width: 185px;">
-                <h4 class="price_text">Giá: 650,000₫</h4>
-                <div class="buy_bt overlay">
-                  <button class="btn  icon-fallback-text h-100" style="background-color:cornflowerblue">Xem chi tiết
-                  </button>
-                  <button class="btn  icon-fallback-text h-100" style="background-color:orange; margin-left: 10px">Mua
-                    ngay
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <br>
-    </div>
-  </div>
-  <div class="about_section layout_padding" style="background: lightblue">
-    <div class="container">
-      <div class="about_section_main">
-        <div class="row">
-          <div class="col-md-6">
-            <div class="about_taital_main">
-              <h1 class="about_taital">Vì sao chọn nước hoa là món quà dành tặng phái đẹp hoàn hảo nhất?</h1>
-              <p class="about_text">Trước vô vàn lựa chọn làm quà dành tặng nửa kia thì nước hoa vẫn là sự lựa chọn ưu
-                tiên hàng đầu. Bởi lẽ nước hoa không chỉ là một sản phẩm đa công dụng, phục vụ cho nhiều mục đích khác
-                nhau như: dùng trên cơ thể, xịt lên áo quần hay tạo một bầu không khí thơm ngát cho căn nhà của bạn. Nó
-                còn là một món quà thiên về mặt tinh thần.
-
-                Với một chai nước hoa, các nàng sẽ luôn mang bên mình vì đây là sản phẩm hằng ngày và giúp họ nhớ về
-                bạn.
-                Vì thế, nước hoa là một món quà chứa chan tình cảm.</p>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div><img src="https://theperfume.vn/wp-content/uploads/2021/02/qua-tang-mung-8-thang-3-1.jpg"
-                      class="image_3"
-                      style="width: 500px"></div>
           </div>
         </div>
       </div>
     </div>
+    <br>
+
+    <div class="mb-5 mt-2" style="text-align: center">
+      <a style="cursor: pointer; color: #151414; text-decoration: none" type="button"
+         (click)="getPerfumeByQuantitySold(size+8)" *ngIf="!last">
+        Xem thêm
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+             class="bi bi-caret-down" viewBox="0 0 16 16">
+          <path
+            d="M3.204 5h9.592L8 10.481 3.204 5zm-.753.659 4.796 5.48a1 1 0 0 0 1.506 0l4.796-5.48c.566-.647.106-1.659-.753-1.659H3.204a1 1 0 0 0-.753 1.659z"/>
+        </svg>
+      </a>
+      <a style="cursor: pointer; color: #151414; text-decoration: none" type="button"
+         (click)="getPerfumeByQuantitySold(size=8)" *ngIf="last">
+        Ẩn bớt
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+             class="bi bi-caret-up" viewBox="0 0 16 16">
+          <path
+            d="M3.204 11h9.592L8 5.519 3.204 11zm-.753-.659 4.796-5.48a1 1 0 0 1 1.506 0l4.796 5.48c.566.647.106 1.659-.753 1.659H3.204a1 1 0 0 1-.753-1.659z"/>
+        </svg>
+      </a>
+    </div>
+
+    <div class="about_section layout_padding" style="background: lightblue">
+      <div class="container">
+        <div class="about_section_main">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="about_taital_main">
+                <h1 class="about_taital">Vì sao chọn nước hoa là món quà dành tặng phái đẹp hoàn hảo nhất?</h1>
+                <p class="about_text">Trước vô vàn lựa chọn làm quà dành tặng nửa kia thì nước hoa vẫn là sự lựa
+                  chọn ưu
+                  tiên hàng đầu. Bởi lẽ nước hoa không chỉ là một sản phẩm đa công dụng, phục vụ cho nhiều mục đích
+                  khác
+                  nhau như: dùng trên cơ thể, xịt lên áo quần hay tạo một bầu không khí thơm ngát cho căn nhà của
+                  bạn. Nó
+                  còn là một món quà thiên về mặt tinh thần.
+
+                  Với một chai nước hoa, các nàng sẽ luôn mang bên mình vì đây là sản phẩm hằng ngày và giúp họ nhớ
+                  về
+                  bạn.
+                  Vì thế, nước hoa là một món quà chứa chan tình cảm.</p>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div><img src="https://theperfume.vn/wp-content/uploads/2021/02/qua-tang-mung-8-thang-3-1.jpg"
+                        class="image_3"
+                        style="width: 500px"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
   </div>
-  <br>
 </div>
-
-

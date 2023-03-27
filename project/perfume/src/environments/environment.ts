@@ -7,6 +7,7 @@ export const environment = {
   firebaseConfig: {
     apiKey: 'AIzaSyCRcrnYQnA3ARobacArZfRcrBOKAlgnXgI',
     authDomain: 'perfume-3c9a8.firebaseapp.com',
+    databaseURL: 'https://perfume-3c9a8-default-rtdb.firebaseio.com/',
     projectId: 'perfume-3c9a8',
     storageBucket: 'perfume-3c9a8.appspot.com',
     messagingSenderId: '144422525427',

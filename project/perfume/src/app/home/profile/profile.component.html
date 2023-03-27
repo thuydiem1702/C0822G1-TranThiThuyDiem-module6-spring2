@@ -7,14 +7,12 @@
     </div>
     <div class="col-md-6">
       <div class="profile-head">
-
         <h5>
           {{user.name}}
         </h5>
-
         <ul class="nav nav-tabs" id="myTab" role="tablist">
           <li class="nav-item">
-            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
+            <a class="nav-link active" id="home-tab" data-toggle="tab" role="tab" aria-controls="home"
                aria-selected="true">Giới Thiệu</a>
           </li>
           <li class="nav-item">
@@ -25,11 +23,12 @@
       </div>
     </div>
     <div class="col-md-2">
-      <input type="submit" data-toggle="modal" data-target="#staticBackdrop" class="profile-edit-btn" name="btnAddMore"
+      <input type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
              value="Chỉnh Sửa"/>
-    </div>
 
+    </div>
   </div>
+
   <div class="row" style="margin-top: -130px">
     <div class="col-md-4">
       <div class="profile-work">
@@ -48,7 +47,6 @@
     <div class="col-md-8">
       <div class="tab-content profile-tab" id="myTabContent">
         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-
           <div class="row">
             <div class="col-md-6">
               <label>Họ Và Tên:</label>
@@ -82,6 +80,7 @@
             </div>
           </div>
         </div>
+
         <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
           <div class="row">
             <div class="col-md-6">
@@ -114,15 +113,11 @@
   </div>
 </div>
 
-<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1"
-     aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-xl">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="staticBackdropLabel">Chỉnh sửa thông tin</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
       </div>
       <div class="modal-body">
         <form [formGroup]="form" (ngSubmit)="update()">
@@ -138,7 +133,6 @@
             <div class="col-sm-10">
               <input type="text" class="form-control" formControlName="phoneNumber">
               <span class="text-danger">{{phoneNumberError}}</span>
-
             </div>
           </div>
 
@@ -183,13 +177,14 @@
           <div class="mb-3 row">
             <label class="col-sm-2 col-form-label">Đổi Mật Khẩu:<span style="color: red">(*):</span></label>
             <div class="col-sm-10">
-              <button class="btn btn-outline-primary" data-toggle="modal" data-target="#staticBackdrop2"
-                      type="button">+
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal1">+
               </button>
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" id="dismiss" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+            <button type="button" id="dismiss" class="btn btn-secondary" data-dismiss="modal" data-bs-dismiss="modal">
+              Hủy
+            </button>
             <button type="submit" class="btn btn-primary">Xác Nhận</button>
           </div>
         </form>
@@ -197,18 +192,13 @@
     </div>
   </div>
 </div>
-<div class="modal fade" id="staticBackdrop2" style="top: 100px" data-backdrop="static" data-keyboard="false"
-     tabindex="-1"
-     aria-labelledby="staticBackdropLabel" aria-hidden="true">
+
+<div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-xl">
     <div class="modal-dialog modal-lg" style="background: antiquewhite">
-
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="staticBackdropLabel2">Cập nhật mật khẩu</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
         </div>
         <div class="modal-body">
           <form [formGroup]="formPassword" (ngSubmit)="changePassword()">
@@ -234,7 +224,9 @@
               </div>
             </div>
             <div class="modal-footer">
-              <button type="button" id="dismiss2" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+              <button type="button" id="dismiss2" class="btn btn-secondary" data-dismiss="modal" data-bs-dismiss="modal">
+                Hủy
+              </button>
               <button type="submit" class="btn btn-primary">Xác Nhận</button>
             </div>
           </form>

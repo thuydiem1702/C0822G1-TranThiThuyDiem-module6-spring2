@@ -1,8 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {FormControl, FormGroup} from '@angular/forms';
-
-import {$} from 'protractor';
 import {Title} from '@angular/platform-browser';
 import Swal from 'sweetalert2';
 import {finalize} from 'rxjs/operators';
@@ -131,7 +129,7 @@ export class ProfileComponent implements OnInit {
       Swal.fire({
         position: 'center',
         icon: 'error',
-        title: 'Vui lòng điền đầy đủ thông tin vào ông trống',
+        title: 'Vui lòng điền đầy đủ thông tin vào ô trống',
         showConfirmButton: false,
         timer: 2500
       });
@@ -171,6 +169,7 @@ export class ProfileComponent implements OnInit {
             if (url) {
               // lấy lại url
               this.user.avatar = url;
+              console.log(url);
             }
             this.form.patchValue({avatar: url});
             this.src = url;
