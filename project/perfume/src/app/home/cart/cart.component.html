@@ -126,20 +126,20 @@
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let x of carts;index as i">
-    <td>{{i + 1}}</td>
-    <td>{{x.name}}</td>
-    <td><img src="{{x.image}}" style="height: 90px;width: 90px"></td>
-    <td>{{x.price | currency: 'VND': 'symbol'}}</td>
-    <td>{{x.quantity}}</td>
-  </tr>
-  <tr>
-    <td colspan="3">Tổng tiền</td>
-    <td colspan="1">{{total  | currency: 'VND': 'symbol'}}</td>
-    <td colspan="1">
-      <button (click)="buy()" class="btn btn-outline-success">Thanh toán</button>
-    </td>
-  </tr>
+<!--  <tr *ngFor="let x of carts;index as i">-->
+<!--    <td>{{i + 1}}</td>-->
+<!--    <td>{{x.name}}</td>-->
+<!--    <td><img src="{{x.image}}" style="height: 90px;width: 90px"></td>-->
+<!--    <td>{{x.price | currency: 'VND': 'symbol'}}</td>-->
+<!--    <td>{{x.quantity}}</td>-->
+<!--  </tr>-->
+<!--  <tr>-->
+<!--    <td colspan="3">Tổng tiền</td>-->
+<!--    <td colspan="1">{{total  | currency: 'VND': 'symbol'}}</td>-->
+<!--    <td colspan="1">-->
+<!--      <button (click)="buy()" class="btn btn-outline-success">Thanh toán</button>-->
+<!--    </td>-->
+<!--  </tr>-->
   </tbody>
 </table>
 <div *ngIf="length == 0" style="text-align: center;margin-top: 10px;margin-bottom: 50px">

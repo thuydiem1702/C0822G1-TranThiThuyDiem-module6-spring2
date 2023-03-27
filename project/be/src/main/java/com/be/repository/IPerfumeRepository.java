@@ -63,7 +63,7 @@ public interface IPerfumeRepository extends JpaRepository<Perfume, Integer> {
     @Query(value = "select * from perfume where flag_delete = false order by perfumeee.perfume.id_perfume desc ", nativeQuery = true)
     Page<Perfume> showListPerfume(Pageable pageable);
 
-    @Query(value = "select * from perfume where name like %:name% and flag_delete = false ", nativeQuery = true)
+    @Query(value = "select * from perfume where name like concat ('%':name'%') and flag_delete = false ", nativeQuery = true)
     Page<Perfume> searchByName(@Param("name") String name, Pageable pageable);
 
     @Query(value = "select * from perfume where price = :price and flag_delete = false ", nativeQuery = true)

@@ -13,12 +13,12 @@
         <div class="col-xl-5 col-lg-4 col-12 header-center" id="search-header" style="width: 360px">
           <form action="/search" method="get" class="site-header__search small--hide input-group search-bar  "
                 role="search">
-            <input style="border-radius: 25px 0 0 25px;width: 100px" type="text" name="q" value="" autocomplete="off"
+            <input #search style="border-radius: 25px 0 0 25px;width: 100px" type="text" name="q" value="" autocomplete="off"
                    placeholder="Tìm kiếm sản phẩm..."
                    class="input-group-field auto-search form-control " required="">
             <input type="hidden" name="type" value="product">
             <span class="input-group-btn ">
-							<button type="submit" class="btn  icon-fallback-text h-100"
+							<button (click)="search1(search.value)" type="submit" class="btn  icon-fallback-text h-100"
                       style="background-color:forestgreen;border-radius: 0 25px 25px 0 ;margin-left: 5px">
 								<span class="fa fa-search" style="color:white;">
 <!--                <img src="../../../assets/icons8-search-64.png" height="32" width="32"/>-->

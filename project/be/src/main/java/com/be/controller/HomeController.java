@@ -18,7 +18,7 @@ public class HomeController {
     private IPerfumeService perfumeService;
 
     @GetMapping("search")
-    public ResponseEntity<?> searchPerfume(@RequestParam(name = "name", defaultValue = "", required = false) String name, @PageableDefault(size = 5) Pageable pageable) {
+    public ResponseEntity<?> searchPerfume(@RequestParam(name = "name", defaultValue = "", required = false) String name, @PageableDefault(size = 4) Pageable pageable) {
         if (name.equals("null")) {
             name = "";
         }
