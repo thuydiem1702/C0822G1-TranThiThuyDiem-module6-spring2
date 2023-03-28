@@ -6,6 +6,7 @@ import javax.persistence.*;
 public class Perfume {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_perfume")
     private Integer idPerfume;
     @Column(unique = true, length = 255)
     private String name;

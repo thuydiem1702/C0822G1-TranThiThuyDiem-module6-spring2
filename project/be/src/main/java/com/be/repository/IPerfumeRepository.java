@@ -63,10 +63,10 @@ public interface IPerfumeRepository extends JpaRepository<Perfume, Integer> {
     @Query(value = "select * from perfume where flag_delete = false order by perfumeee.perfume.id_perfume desc ", nativeQuery = true)
     Page<Perfume> showListPerfume(Pageable pageable);
 
-    @Query(value = "select * from perfume where name like concat ('%':name'%') and flag_delete = false ", nativeQuery = true)
+    @Query(value = "select * from perfume where name like concat ('%':name'%') and flag_delete = false  order by perfumeee.perfume.id_perfume desc", nativeQuery = true)
     Page<Perfume> searchByName(@Param("name") String name, Pageable pageable);
 
-    @Query(value = "select * from perfume where price = :price and flag_delete = false ", nativeQuery = true)
+    @Query(value = "select * from perfume where price like concat ('%':price'%') and flag_delete = false order by perfumeee.perfume.id_perfume desc", nativeQuery = true)
     Page<Perfume> searchByPrice(@Param("price") double price, Pageable pageable);
 
     @Query(value = "select * from perfume where quantity = :quantity and flag_delete = false ", nativeQuery = true)
@@ -93,10 +93,14 @@ public interface IPerfumeRepository extends JpaRepository<Perfume, Integer> {
             "ORDER BY quantity_sold")
     Page<Perfume> getPerfumeByQuantity(Pageable pageable, @Param("limit") Integer limit);
 
-//    @Query(value = "SELECT * FROM perfume where code_qr=:QRCode", nativeQuery = true)
-//    Perfume findByQRCode(@Param("QRCode") String QRCode);
-
-
     @Query(value = "select * from perfume", nativeQuery = true)
     List<Perfume> getList();
+
+    @Modifying
+    @Query(value = "INSERT INTO `perfumeee`.`cart` (`user_id`,flag) VALUES (:idUser,false)", nativeQuery = true)
+    void addCart(@Param("idUser") Long idUser);
+
+    @Modifying
+    @Query(value = "INSERT INTO `perfumeee`.`order_detail` (`cart_id`, `id_perfume`,flag,quantity) VALUES (:idCart, :idPerfume,false,1)", nativeQuery = true)
+    void addOrderDetail(@Param("idCart") Long idCart, @Param("idPerfume") Long idPerfume);
 }

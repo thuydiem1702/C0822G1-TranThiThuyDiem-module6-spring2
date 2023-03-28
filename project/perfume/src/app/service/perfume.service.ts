@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Perfume} from '../entity/perfume';
+import {IOrderDetail} from '../dto/IOrderDetail';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class PerfumeService {
   constructor(private httpClient: HttpClient) {
   }
 
-    getAll(size: number): Observable<any> {
+  getAll(size: number): Observable<any> {
     return this.httpClient.get<any>('http://localhost:8080/api/perfume/list?size=' + size);
   }
 
@@ -57,6 +58,9 @@ export class PerfumeService {
   searchPerfumeByName(name: string, page: number): Observable<any> {
     return this.httpClient.get<any>('http://localhost:8080/home/search?name=' + name + '&page=' + page);
   }
+  searchPerfumeByPrice(price: string, page: number): Observable<any> {
+    return this.httpClient.get<any>('http://localhost:8080/home/search?price=' + price + '&page=' + page);
+  }
 
   getAllByQuantitySold(size: number): Observable<any> {
     return this.httpClient.get<any>('http://localhost:8080/api/perfume/list?size=' + size);
@@ -73,5 +77,23 @@ export class PerfumeService {
 
   editPerfume(id, perfume): Observable<any> {
     return this.httpClient.put<any>('http://localhost:8080/api/perfume/edit/' + id, perfume);
+  }
+
+  addCart(idPerfume: number, idUser: number) {
+    return this.httpClient.get('http://localhost:8080/api/perfume/addOderDetail/' + idPerfume + '/' + idUser);
+  }
+
+  getPerfumeInCart(idUser: number): Observable<IOrderDetail[]> {
+    return this.httpClient.get<IOrderDetail[]>('http://localhost:8080/api/perfume/get-perfume-in-cart/' + idUser);
+  }
+
+
+  payPerfume(idUser: number) {
+    return this.httpClient.get<any>('http://localhost:8080/api/perfume/pay-perfume/' + idUser);
+  }
+
+
+  changeQuantity(idUser: number, valueChange: number, idPerfume: number) {
+    return this.httpClient.get('http://localhost:8080/api/perfume/change-quantity/' + idUser + '/' + valueChange + '/' + idPerfume);
   }
 }

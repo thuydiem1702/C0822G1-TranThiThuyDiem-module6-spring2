@@ -1,149 +1,88 @@
-<body>
-<section class="h-100" style="background-color: cadetblue;margin-top: 50px">
+<div style="margin-top: 50px">
+  <section class="h-100" style="margin-top: 50px">
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-12">
-        <div class="card card-registration card-registration-2" style="border-radius: 15px; background-color: snow">
+        <div class="card card-registration card-registration-2" style="border-radius: 15px; background-color: whitesmoke">
           <div class="card-body p-0">
             <div class="row g-0">
               <div class="col-lg-8">
                 <div class="p-5">
                   <div class="d-flex justify-content-between align-items-center mb-5">
-                    <h1 class="fw-bold mb-0 text-black">Giỏ hàng</h1>
-                    <h6 class="mb-0 text-muted">{{length}} mặt hàng</h6>
+                    <h3 class="fw-bold mb-0 ">Giỏ hàng của bạn</h3>
                   </div>
-
                   <hr class="my-4">
-                  <div *ngIf="length!=0; else elseBlock">
-                    <div class="row mb-4 d-flex justify-content-between align-items-center"
-                         *ngFor="let c of cartList; index as i">
-                      <div class="col-md-2 col-lg-2 col-xl-2">
-                        <a type="button" [routerLink]="['/body/detail',c.id]">
-                          <img
-                            [src]="c.image"
-                            class="img-fluid rounded-3" alt="Cotton T-shirt"></a>
-                      </div>
-                      <div class="col-md-3 col-lg-3 col-xl-3">
-                        <h6 class="text-black">{{c.name}}</h6>
-                      </div>
-                      <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-                        <button class="btn btn-link px-2"
-                                (click)="reduceQuantity(i, c.quantity)">
-                          <i class="fas fa-minus"></i>
-                        </button>
-
-                        <input id="form1" min="0" style="width: 50px" name="quantity"
-                               (change)="updateQuantity(i, $event)" [value]="c.quantity" type="number"
-                               class="form-control form-control-sm"/>
-
-                        <button class="btn btn-link px-2"
-                                (click)="increaseQuantity(i, c.quantity)">
-                          <i class="fas fa-plus"></i>
-                        </button>
-                      </div>
-                      <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                        <h6 class="mb-0">{{c.price}}</h6>
-                      </div>
-                      <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                        <a type="button" (click)="removeCard(i)" class="text-muted"><i class="fas fa-times"></i></a>
-                      </div>
-                      <hr class="my-4">
+                  <div class="row mb-4 d-flex justify-content-between align-items-center"
+                       *ngFor="let oderDetail of iOderDetailList">
+                    <div class="col-md-2 col-lg-2 col-xl-2">
+                      <img
+                        src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img1.webp"
+                        class="img-fluid rounded-3" alt="Cotton T-shirt">
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-xl-3">
+                      <h6 class="text-black">{{oderDetail.perfumeName}}</h6>
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+                      <button class="btn btn-link px-2" (click)="changeQuantity(0,oderDetail.idPerfume)">
+                        <i class="fas fa-minus"></i>
+                      </button>
+                      <input id="form1" min="0" name="quantity" value="{{oderDetail.quantity}}" type="number"
+                             class="form-control form-control-sm" style="width: 50px"/>
+                      <button class="btn btn-link px-2" (click)="changeQuantity(1,oderDetail.idPerfume)">
+                        <i class="fas fa-plus"></i>
+                      </button>
+                    </div>
+                    <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+                      <h6 class="mb-0" style="color: red">{{oderDetail.price|number}}₫</h6>
+                    </div>
+                    <div class="col-md-1 col-lg-1 col-xl-1 text-end">
+                      <a href="#!" class="text-muted"><i class="fas fa-times"></i></a>
                     </div>
                   </div>
-
-                  <ng-template #elseBlock>
-                    <div class="text-center">
-                      <img style="width: 500px" src="/assets/images/emptycart.png"/>
-                    </div>
-                  </ng-template>
-
-                </div>
-                <div class="pt-5 ps-3">
-                  <h6><a routerLink="/body" class="text-body btn btn-outline-primary"><i
-                    class="fas fa-long-arrow-alt-left me-2"></i>Back to shop</a></h6>
+                  <hr class="my-4">
                 </div>
               </div>
               <div class="col-lg-4 bg-grey">
                 <div class="p-5">
-                  <h3 class="fw-bold mb-5 mt-2 pt-1">Tổng tiền</h3>
+                  <h4 class="fw-bold mb-5 mt-2 pt-1 text-uppercase">Tổng tiền tạm tính</h4>
                   <hr class="my-4">
-
                   <div class="d-flex justify-content-between mb-4">
-                    <h5 class="text-uppercase">số lượng: {{quantity}}</h5>
-                    <h5>{{totalPayment | currency:'VND':''}} Đ</h5>
+                    <h5>Số mặt hàng: <span style="margin-left: 10px">{{perfumeCount}}</span></h5>
                   </div>
-
-                  <h5 class="text-uppercase mb-3">Shipping</h5>
-
+                  <h5>Vận chuyển: </h5>
                   <div class="mb-4 pb-2">
-                    <select class="select form-select">
-                      <option value="1">Standard-Delivery- €5.00</option>
-                      <option value="2">Two</option>
-                      <option value="3">Three</option>
-                      <option value="4">Four</option>
-                    </select>
+                    <input type="text"  placeholder="Nhập địa chỉ"
+                           class="form-control form-control-lg"/>
                   </div>
-
-                  <h5 class="text-uppercase mb-3"> code</h5>
-
+                  <h5>Mã giảm giá:</h5>
                   <div class="mb-5">
                     <div class="form-outline">
-                      <input type="text" id="form3Examplea2" class="form-control form-control-lg"/>
-                      <label class="form-label" for="form3Examplea2">Nhập code: </label>
+                      <input type="text" id="form3Examplea2" placeholder="Nhập mã giảm giá"
+                             class="form-control form-control-lg"/>
                     </div>
                   </div>
-
                   <hr class="my-4">
                   <div class="d-flex justify-content-between mb-5">
-                    <h5 class="text-uppercase">Tổng giá: </h5>
-                    <h5>{{totalPayment | currency:'VND':''}} Đ</h5>
+                    <p style="font-size: 19px; color: #2b2b34">Tổng tiền: </p>
+                    <h4 style="color: red">{{totalMoney|number}} ₫</h4>
                   </div>
-                  <div class="text-center">
-                    <button type="button" class="btn btn-warning btn-block btn-lg"
-                            data-mdb-ripple-color="dark">Thanh toán
-                    </button>
-                  </div>
+                  <button type="button" (click)="payPerfume()" class="btn btn-danger btn-block btn-lg"
+                          data-mdb-ripple-color="primary">Thanh toán
+                  </button>
                 </div>
               </div>
             </div>
+            <ng-template #cartIsEmpty>
+              <div class="row g-0">
+                <img class="d-flex justify-content-center "
+                     width="50%"/>
+              </div>
+            </ng-template>
           </div>
         </div>
       </div>
     </div>
   </div>
-</section>
-</body>
-
-<h1 class="text-center" style="margin-top: 50px">Giỏ Hàng</h1>
-<table class="table table-hover" *ngIf="length != 0">
-  <thead>
-  <tr class="bg-info">
-    <th>STT</th>
-    <th>Tên Sản Phẩm</th>
-    <th>Hình Ảnh</th>
-    <th>Đơn Giá</th>
-    <th>Số Lượng</th>
-  </tr>
-  </thead>
-  <tbody>
-<!--  <tr *ngFor="let x of carts;index as i">-->
-<!--    <td>{{i + 1}}</td>-->
-<!--    <td>{{x.name}}</td>-->
-<!--    <td><img src="{{x.image}}" style="height: 90px;width: 90px"></td>-->
-<!--    <td>{{x.price | currency: 'VND': 'symbol'}}</td>-->
-<!--    <td>{{x.quantity}}</td>-->
-<!--  </tr>-->
-<!--  <tr>-->
-<!--    <td colspan="3">Tổng tiền</td>-->
-<!--    <td colspan="1">{{total  | currency: 'VND': 'symbol'}}</td>-->
-<!--    <td colspan="1">-->
-<!--      <button (click)="buy()" class="btn btn-outline-success">Thanh toán</button>-->
-<!--    </td>-->
-<!--  </tr>-->
-  </tbody>
-</table>
-<div *ngIf="length == 0" style="text-align: center;margin-top: 10px;margin-bottom: 50px">
-  <p>Chưa có sản phẩm trong giỏ hàng <a href="./" title="Trang chủ">[Tiếp tục mua sắm]</a></p>
-  <p><img src="https://dieuhoanoithat.vn/public/frontend/images/cart-emty.png" alt="Chưa có sản phẩm trong giỏ hàng"/>
-  </p>
+  </section>
 </div>
+

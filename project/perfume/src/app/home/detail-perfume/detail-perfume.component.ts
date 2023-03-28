@@ -6,6 +6,7 @@ import {TokenService} from '../../login/service/token.service';
 import {PerfumeService} from '../../service/perfume.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ShareService} from '../../login/service/share.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-detail-perfume',
@@ -36,8 +37,9 @@ export class DetailPerfumeComponent implements OnInit {
   lastPage: boolean;
   nameSearch = '';
   perfume: Perfume = {};
+  idUserTest: string | null = '';
+  idUser = 0;
 
-  // tslint:disable-next-line:max-line-length
   constructor(private title: Title,
               private token: TokenService,
               private perfumeService: PerfumeService,
@@ -82,6 +84,32 @@ export class DetailPerfumeComponent implements OnInit {
         }, error => {
         });
       }
+    });
+  }
+
+  addCart(idPerfume: any) {
+    this.idUserTest = this.token.getId();
+    console.log(this.idUser);
+    if (this.idUserTest != null) {
+      // tslint:disable-next-line:radix
+      this.idUser = parseInt(this.idUserTest);
+    }
+    this.perfumeService.addCart(idPerfume, this.idUser).subscribe(next => {
+      Swal.fire({
+        position: 'center',
+        title: 'Thêm vào giỏ thành công',
+        icon: 'success',
+        showConfirmButton: false,
+        timer: 1000
+      });
+    }, error => {
+      Swal.fire({
+        position: 'center',
+        title: 'Vui lòng đăng nhập để mua hàng',
+        icon: 'error',
+        showConfirmButton: false,
+        timer: 2000
+      });
     });
   }
 }

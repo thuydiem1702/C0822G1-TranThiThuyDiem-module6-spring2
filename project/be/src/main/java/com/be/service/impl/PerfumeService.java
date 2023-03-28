@@ -1,6 +1,9 @@
 package com.be.service.impl;
 
+import com.be.dto.IOrderDetail;
+import com.be.model.cart.Cart;
 import com.be.model.perfume.Perfume;
+import com.be.repository.ICartRepository;
 import com.be.repository.IPerfumeRepository;
 import com.be.service.IPerfumeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +17,8 @@ import java.util.List;
 public class PerfumeService implements IPerfumeService {
     @Autowired
     private IPerfumeRepository perfumeRepository;
+    @Autowired
+    private ICartRepository iCartRepository;
 
     @Override
     public void addPerfume(Perfume perfume) {
@@ -73,5 +78,41 @@ public class PerfumeService implements IPerfumeService {
     @Override
     public List<Perfume> getList() {
         return perfumeRepository.getList();
+    }
+
+    @Override
+    public void addCart(Long idUser, Long idPerfume) {
+        List<IOrderDetail> orderDetailList = iCartRepository.getPerfumeInCart(idUser);
+        for (int i = 0; i < orderDetailList.size(); i++) {
+            if (orderDetailList.get(i).getIdPerfume() == idPerfume) {
+                iCartRepository.increaseQuantity(orderDetailList.get(i).getIdOrder());
+                return;
+            }
+        }
+        perfumeRepository.addCart(idUser);
+        Cart cart = iCartRepository.getCartByIdUser(idUser);
+        perfumeRepository.addOrderDetail(cart.getId(), idPerfume);
+    }
+
+    @Override
+    public void addOrderDetail(Long idCart, Long idPerfume) {
+        perfumeRepository.addOrderDetail(idCart, idPerfume);
+    }
+
+    @Override
+    public void changeQuantity(Long idUser, Long valueChange, Long idPerfume) {
+        List<IOrderDetail> orderDetails = iCartRepository.getPerfumeInCart(idUser);
+        for (int i = 0; i < orderDetails.size(); i++) {
+            if (orderDetails.get(i).getIdPerfume() == idPerfume && orderDetails.get(i).getQuantity() < 2) {
+                iCartRepository.deletePerfumeByIdOrder(orderDetails.get(i).getIdOrder());
+                return;
+            } else if (orderDetails.get(i).getIdPerfume() == idPerfume && valueChange == 1) {
+                iCartRepository.increaseQuantity(orderDetails.get(i).getIdOrder());
+                return;
+            } else if (orderDetails.get(i).getIdPerfume() == idPerfume && valueChange == 0) {
+                iCartRepository.reduceQuantity(orderDetails.get(i).getIdOrder());
+                return;
+            }
+        }
     }
 }

@@ -3,6 +3,7 @@ package com.be.service;
 import com.be.model.perfume.Perfume;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
@@ -23,4 +24,11 @@ public interface IPerfumeService {
     Page<Perfume> getPerfumeByQuantity(Pageable pageable);
 
     List<Perfume> getList();
+
+
+    void addCart(Long idUser, Long idPerfume);
+
+    void addOrderDetail(@Param("idCart") Long idCart, @Param("idPerfume") Long idPerfume);
+
+    void changeQuantity(Long idUser,Long valueChange, Long idPerfume);
 }

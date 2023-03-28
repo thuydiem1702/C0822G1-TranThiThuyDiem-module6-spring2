@@ -74,13 +74,61 @@
   </button>
 </div>
 <div class="product_section layout_padding">
+  <div class="product">
+    <div class="container">
+      <div class="row">
+        <div class="container mt-5 mb-5">
+          <div class="gallary-header text-center">
+            <h1 style="width: 100%;background-color: darkslategrey;height: 20px;"><p class="cmtt"
+                                                                                     style="background-color: white;width: 30%;line-height: 4px;padding: 5px 5px 13px 5px;margin: auto">
+              SẢN PHẨM HOT
+            </p></h1>
+          </div>
+        </div>
+      </div>
+      <div class="wrapper">
+        <ul class="products">
+          <div class="previous">
+            <a class="previous" (click)="searchPerfume(nameSearch,number - 1)" *ngIf="!firstPage">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            </a>
+          </div>
+          <li *ngFor="let perfume of perfumes">
+            <div class="product-item">
+              <div class="product-top">
+                <a href="" class="product-thumb">
+                  <img [src]="perfume.image">
+                </a>
+                <a class="buy-now" data-toggle="modal" (click)="watchDetail(perfume)" data-target="#detail">Mua
+                  ngay</a>
+              </div>
+            </div>
+            <div class="product-info">
+              <a href="" class="product-cat"></a>
+              <!--          <a href="" class="product-name">{{commodity.name | slice: 0 :20 | titlecase}}</a>-->
+              <a href="" class="product-name">{{perfume.name | titlecase | slice: 0 :20 }}<span
+                style="background-color: lightgray;color: #007bff;font-weight: 600"
+                *ngIf="perfume.name.length > 20">.....</span></a>
+              <div class="product-price">Giá: {{perfume.price  | currency: "VND":''}}đ</div>
+            </div>
+          </li>
+          <div class="next">
+            <a class="next" (click)="searchPerfume(nameSearch,number + 1)" *ngIf="!lastPage">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            </a>
+          </div>
+        </ul>
+      </div>
+    </div>
+  </div>
+
   <div class="container">
     <div class="row">
       <div class="container mt-5 mb-5">
         <div class="gallary-header text-center">
           <h1 style="width: 100%;background-color: darkslategrey;height: 20px;"><p class="cmtt"
                                                                                    style="background-color: white;width: 30%;line-height: 4px;padding: 5px 5px 13px 5px;margin: auto">
-            SẢN PHẨM HOT
+            NƯỚC HOA
           </p></h1>
         </div>
       </div>
@@ -88,7 +136,7 @@
 
     <div class="product_section_2 layout_padding">
       <div class="row">
-        <div class="col-lg-3 col-sm-6" *ngFor="let perfume of perfumesByQuantitySold">
+        <div class="col-lg-3 col-sm-6" style="margin-top: 30px" *ngFor="let perfume of perfumesByQuantitySold">
           <div class="product_box">
             <div class="card card1" style="width: 17rem;height: 22rem;text-align: center;background: whitesmoke">
               <div class="card-body card2">
@@ -133,53 +181,6 @@
       </a>
     </div>
 
-    <div class="product">
-      <div class="container">
-        <div class="row">
-          <div class="container mt-5 mb-5">
-            <div class="gallary-header text-center">
-              <h1 style="width: 100%;background-color: darkslategrey;height: 20px;"><p class="cmtt"
-                                                                                       style="background-color: white;width: 30%;line-height: 4px;padding: 5px 5px 13px 5px;margin: auto">
-                SẢN PHẨM
-              </p></h1>
-            </div>
-          </div>
-        </div>
-        <div class="wrapper">
-          <ul class="products">
-            <div class="previous">
-              <a class="previous" (click)="searchPerfume(nameSearch,number - 1)" *ngIf="!firstPage">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              </a>
-            </div>
-            <li *ngFor="let perfume of perfumes">
-              <div class="product-item">
-                <div class="product-top">
-                  <a href="" class="product-thumb">
-                    <img [src]="perfume.image">
-                  </a>
-                  <a class="buy-now" data-toggle="modal" (click)="watchDetail(perfume)" data-target="#detail">Mua
-                    ngay</a>
-                </div>
-              </div>
-              <div class="product-info">
-                <a href="" class="product-cat"></a>
-                <!--          <a href="" class="product-name">{{commodity.name | slice: 0 :20 | titlecase}}</a>-->
-                <a href="" class="product-name">{{perfume.name | titlecase | slice: 0 :20 }}<span
-                  style="background-color: lightgray;color: #007bff;font-weight: 600"
-                  *ngIf="perfume.name.length > 20">.....</span></a>
-                <div class="product-price">{{perfume.price  | currency: "VND"}}</div>
-              </div>
-            </li>
-            <div class="next">
-              <a class="next" (click)="searchPerfume(nameSearch,number + 1)" *ngIf="!lastPage">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              </a>
-            </div>
-          </ul>
-        </div>
-      </div>
-    </div>
     <br>
     <div class="about_section layout_padding" style="background: lightblue">
       <div class="container">
