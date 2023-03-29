@@ -38,4 +38,6 @@ public interface IUserService {
 //    List<BillHistoryDTO> getUserHasBuy();
 
     User userLogin(String username);
+
+    Optional<User> findByIdAccount(Integer idAccount);
 }

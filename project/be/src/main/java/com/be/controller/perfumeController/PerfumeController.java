@@ -1,10 +1,13 @@
 package com.be.controller.perfumeController;
 
 import com.be.dto.IOrderDetail;
+import com.be.dto.ITotalCart;
 import com.be.model.cart.Cart;
 import com.be.model.perfume.Perfume;
+import com.be.model.user.User;
 import com.be.service.ICartService;
 import com.be.service.IPerfumeService;
+import com.be.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -14,6 +17,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @CrossOrigin("*")
 @RequestMapping("/api/perfume")
@@ -24,6 +28,12 @@ public class PerfumeController {
 
     @Autowired
     private ICartService cartService;
+
+    @Autowired
+    private IUserService iUserService;
+
+    @Autowired
+    private ICartService iCartService;
 
     @GetMapping("")
     public ResponseEntity<Page<Perfume>> getAllPerfume(@PageableDefault(size = 8) Pageable pageable, @RequestParam(required = false, defaultValue = "") String name) {
@@ -49,15 +59,15 @@ public class PerfumeController {
         return new ResponseEntity<>(perfumeList, HttpStatus.OK);
     }
 
-    @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Perfume> delete(@PathVariable("id") Integer id) {
-        Perfume perfume = perfumeService.findPerfume(id);
-        if (perfume == null) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-        perfumeService.delete(id);
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
+//    @DeleteMapping("/delete/{idPerfume}")
+//    public ResponseEntity<Perfume> delete(@PathVariable("idPerfume") Integer idPerfume) {
+//        Perfume perfume = perfumeService.findPerfume(idPerfume);
+//        if (perfume == null) {
+//            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+//        }
+//        perfumeService.deletePerfume(idPerfume);
+//        return new ResponseEntity<>(HttpStatus.OK);
+//    }
 
     @GetMapping("/search/{id}/{type}")
     public ResponseEntity<Page<Perfume>> search(@PathVariable("id") int id, @PathVariable("type") String type, @PageableDefault(value = 5) Pageable pageable) {
@@ -149,9 +159,9 @@ public class PerfumeController {
     @GetMapping("/get-perfume-in-cart/{idUser}")
     public ResponseEntity<List<IOrderDetail>> getPerfumeInCart(@PathVariable("idUser") Long idUser) {
         List<IOrderDetail> orderDetailList = cartService.getPerfumeInCart(idUser);
-        if (orderDetailList.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
+//        if (orderDetailList.isEmpty()) {
+//            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+//        }
         return new ResponseEntity<>(orderDetailList, HttpStatus.OK);
     }
 
@@ -166,6 +176,28 @@ public class PerfumeController {
                                             @PathVariable("valueChange") Long valueChange,
                                             @PathVariable("idPerfume") Long idPerfume) {
         perfumeService.changeQuantity(idUser, valueChange, idPerfume);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @GetMapping("total")
+    public ResponseEntity<ITotalCart> totalCart(@RequestParam(defaultValue = "") int idAccount) {
+        Optional<User> user = iUserService.findByIdAccount(idAccount);
+        if (user.isPresent()) {
+            ITotalCart iCartDto = iCartService.totalCart(user.get());
+            if (iCartDto != null) {
+                return new ResponseEntity<>(iCartDto, HttpStatus.OK);
+            }
+        }
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @DeleteMapping("/delete/{idOrderDetail}")
+    public ResponseEntity<Cart> delete(@PathVariable("idOrderDetail") Long idOrderDetail) {
+//        Optional<Cart> cart = cartService.findById(idOrderDetail);
+//        if (cart == null) {
+//            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+//        }
+        iCartService.deletePerfumeByIdOrder(idOrderDetail);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }

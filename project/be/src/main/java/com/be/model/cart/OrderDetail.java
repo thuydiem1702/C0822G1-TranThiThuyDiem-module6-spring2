@@ -15,7 +15,7 @@ public class OrderDetail {
     @JoinColumn(name = "id_perfume", nullable = false, referencedColumnName = "id_perfume")
     private Perfume perfume;
     @ManyToOne
-    @JoinColumn(name = "cart", nullable = false, referencedColumnName = "id")
+    @JoinColumn(name = "cart_id", nullable = false, referencedColumnName = "id")
     private Cart cart;
 
     public OrderDetail() {

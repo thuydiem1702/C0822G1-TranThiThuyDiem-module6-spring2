@@ -1,6 +1,7 @@
 package com.be.repository;
 
 import com.be.dto.IOrderDetail;
+import com.be.dto.ITotalCart;
 import com.be.model.cart.Cart;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -17,7 +18,7 @@ public interface ICartRepository extends JpaRepository<Cart, Long> {
     @Query(value = "select * from cart where user_id = :idUser order by id desc limit 1", nativeQuery = true)
     Cart getCartByIdUser(@Param("idUser") Long idUser);
 
-    @Query(value = "select od.id as idOrder, od.id_perfume as idPerfume ,p.name as perfumeName , p.price as price,od.quantity as quantity,p.price * od.quantity as money from user join cart c on user.id = c.user_id  join order_detail od on c.id = od.cart_id join perfume p on od.id_perfume = p.id_perfume where user.id = :idUser and od.flag = false", nativeQuery = true)
+    @Query(value = "select od.id as idOrder, od.id_perfume as idPerfume ,p.name as perfumeName , p.price as price, p.image as image, od.quantity as quantity,p.price * od.quantity as money from user join cart c on user.id = c.user_id  join order_detail od on c.id = od.cart_id join perfume p on od.id_perfume = p.id_perfume where user.id = :idUser and od.flag = false", nativeQuery = true)
     List<IOrderDetail> getPerfumeInCart(@Param("idUser") Long idUser);
 
     @Modifying
@@ -35,4 +36,9 @@ public interface ICartRepository extends JpaRepository<Cart, Long> {
     @Modifying
     @Query(value = "update order_detail set flag = true where order_detail.id = :idOrderDetail", nativeQuery = true)
     void deletePerfumeByIdOrder(@Param("idOrderDetail") Long idOrderDetail);
+
+    @Query(value = "select sum(od.quantity*p.price) as totalCostUser, sum(od.quantity) as quantityUser from cart c join order_detail od on c.id = od.cart_id join perfume p on od.id_perfume = p.id_perfume where c.user_id = :idUser and od.flag= false",
+            nativeQuery = true)
+    ITotalCart totalCostUser(@Param("idUser") int idUser);
+
 }

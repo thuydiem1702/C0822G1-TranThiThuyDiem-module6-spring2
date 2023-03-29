@@ -11,6 +11,7 @@ import org.springframework.data.repository.query.Param;
 import javax.transaction.Transactional;
 import java.util.List;
 
+@Transactional
 public interface IPerfumeRepository extends JpaRepository<Perfume, Integer> {
     @Modifying
     @Transactional
@@ -75,9 +76,8 @@ public interface IPerfumeRepository extends JpaRepository<Perfume, Integer> {
     @Modifying
     @Transactional
     @Query(value = "update perfume  set flag_delete = true" +
-            " where id = :idPerfume", nativeQuery = true)
-    void deletePerfume(@Param("id") Integer id);
-
+            " where id_perfume = :idPerfume", nativeQuery = true)
+    void deletePerfume(@Param("idPerfume") Integer idPerfume);
 
     @Query(value = "select * from perfume where perfume.name like concat('%', :name, '%')", nativeQuery = true)
     Page<Perfume> getAllPerfume(Pageable pageable, @Param("name") String name);

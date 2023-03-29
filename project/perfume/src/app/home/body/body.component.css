@@ -249,9 +249,9 @@ table th, td {
 a span {
   color: black;
   background-color: cadetblue;
-  height: 70px;
+  height: 50px;
   border-radius: 20px;
-  width: 33px;
+  width: 25px;
 }
 
 .product-name {

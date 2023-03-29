@@ -8,13 +8,20 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface IPerfumeService {
+
     void addPerfume(Perfume perfume);
+
     Perfume findPerfume(Integer id);
+
     void editPerfume(Perfume perfume);
+
     Page<Perfume> findAll(Pageable pageable);
-    void delete(Integer id);
+
+    void deletePerfume(@Param("idPerfume") Integer idPerfume);
     Page<Perfume> searchByQuantity(int quantity, Pageable pageable);
+
     Page<Perfume> searchByPrice(double price, Pageable pageable);
+
     Page<Perfume> searchByName(String name, Pageable pageable);
 
     Page<Perfume> getAllPerfume(Pageable pageable, String name);
@@ -30,5 +37,5 @@ public interface IPerfumeService {
 
     void addOrderDetail(@Param("idCart") Long idCart, @Param("idPerfume") Long idPerfume);
 
-    void changeQuantity(Long idUser,Long valueChange, Long idPerfume);
+    void changeQuantity(Long idUser, Long valueChange, Long idPerfume);
 }

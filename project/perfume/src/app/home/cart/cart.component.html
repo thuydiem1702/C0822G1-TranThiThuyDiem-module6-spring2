@@ -1,88 +1,87 @@
 <div style="margin-top: 50px">
   <section class="h-100" style="margin-top: 50px">
-  <div class="container py-5 h-100">
-    <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class="col-12">
-        <div class="card card-registration card-registration-2" style="border-radius: 15px; background-color: whitesmoke">
-          <div class="card-body p-0">
-            <div class="row g-0">
-              <div class="col-lg-8">
-                <div class="p-5">
-                  <div class="d-flex justify-content-between align-items-center mb-5">
-                    <h3 class="fw-bold mb-0 ">Giỏ hàng của bạn</h3>
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12">
+          <div class="card card-registration card-registration-2"
+               style="border-radius: 15px; background-color: whitesmoke">
+            <div class="card-body p-0">
+              <div class="row g-0">
+                <div class="col-lg-8">
+                  <div class="p-5">
+                    <div class="d-flex justify-content-between align-items-center mb-5">
+                      <h3 class="fw-bold mb-0 ">Giỏ hàng của bạn</h3>
+                    </div>
+                    <hr class="my-4">
+                    <div class="row mb-4 d-flex justify-content-between align-items-center"
+                         *ngFor="let oderDetail of iOderDetailList">
+                      <div class="col-md-2 col-lg-2 col-xl-2">
+                        <img [src]="oderDetail.image" style="width: 90%">
+                      </div>
+                      <div class="col-md-3 col-lg-3 col-xl-3">
+                        <h6 class="text-black">{{oderDetail.perfumeName}}</h6>
+                      </div>
+                      <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+                        <button class="btn btn-link px-2" (click)="changeQuantity(0,oderDetail.idPerfume)">
+                          <i class="fas fa-minus"></i>
+                        </button>
+                        <input id="form1" min="0" name="quantity" value="{{oderDetail.quantity}}" type="number"
+                               class="form-control form-control-sm" style="width: 50px"/>
+                        <button class="btn btn-link px-2" (click)="changeQuantity(1,oderDetail.idPerfume)">
+                          <i class="fas fa-plus"></i>
+                        </button>
+                      </div>
+                      <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+                        <h6 class="mb-0" style="color: red">{{oderDetail.price|number}}₫</h6>
+                      </div>
+                      <div class="col-md-1 col-lg-1 col-xl-1 text-end">
+                        <a class="text-muted"><i class="fas fa-times" (click)="deletePerfumeByIdOrder(oderDetail)"></i></a >
+                      </div>
+                    </div>
+                    <hr class="my-4">
                   </div>
-                  <hr class="my-4">
-                  <div class="row mb-4 d-flex justify-content-between align-items-center"
-                       *ngFor="let oderDetail of iOderDetailList">
-                    <div class="col-md-2 col-lg-2 col-xl-2">
-                      <img
-                        src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img1.webp"
-                        class="img-fluid rounded-3" alt="Cotton T-shirt">
-                    </div>
-                    <div class="col-md-3 col-lg-3 col-xl-3">
-                      <h6 class="text-black">{{oderDetail.perfumeName}}</h6>
-                    </div>
-                    <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-                      <button class="btn btn-link px-2" (click)="changeQuantity(0,oderDetail.idPerfume)">
-                        <i class="fas fa-minus"></i>
-                      </button>
-                      <input id="form1" min="0" name="quantity" value="{{oderDetail.quantity}}" type="number"
-                             class="form-control form-control-sm" style="width: 50px"/>
-                      <button class="btn btn-link px-2" (click)="changeQuantity(1,oderDetail.idPerfume)">
-                        <i class="fas fa-plus"></i>
-                      </button>
-                    </div>
-                    <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                      <h6 class="mb-0" style="color: red">{{oderDetail.price|number}}₫</h6>
-                    </div>
-                    <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                      <a href="#!" class="text-muted"><i class="fas fa-times"></i></a>
-                    </div>
-                  </div>
-                  <hr class="my-4">
                 </div>
-              </div>
-              <div class="col-lg-4 bg-grey">
-                <div class="p-5">
-                  <h4 class="fw-bold mb-5 mt-2 pt-1 text-uppercase">Tổng tiền tạm tính</h4>
-                  <hr class="my-4">
-                  <div class="d-flex justify-content-between mb-4">
-                    <h5>Số mặt hàng: <span style="margin-left: 10px">{{perfumeCount}}</span></h5>
-                  </div>
-                  <h5>Vận chuyển: </h5>
-                  <div class="mb-4 pb-2">
-                    <input type="text"  placeholder="Nhập địa chỉ"
-                           class="form-control form-control-lg"/>
-                  </div>
-                  <h5>Mã giảm giá:</h5>
-                  <div class="mb-5">
-                    <div class="form-outline">
-                      <input type="text" id="form3Examplea2" placeholder="Nhập mã giảm giá"
+                <div class="col-lg-4 bg-grey">
+                  <div class="p-5">
+                    <h4 class="fw-bold mb-5 mt-2 pt-1 text-uppercase">Tổng tiền tạm tính</h4>
+                    <hr class="my-4">
+                    <div class="d-flex justify-content-between mb-4">
+                      <h5>Số mặt hàng: <span style="margin-left: 10px">{{totalCart.quantityUser}}</span></h5>
+                    </div>
+                    <h5>Vận chuyển: </h5>
+                    <div class="mb-4 pb-2">
+                      <input type="text" placeholder="Nhập địa chỉ"
                              class="form-control form-control-lg"/>
                     </div>
+                    <h5>Mã giảm giá:</h5>
+                    <div class="mb-5">
+                      <div class="form-outline">
+                        <input type="text" id="form3Examplea2" placeholder="Nhập mã giảm giá"
+                               class="form-control form-control-lg"/>
+                      </div>
+                    </div>
+                    <hr class="my-4">
+                    <div class="d-flex justify-content-between mb-5">
+                      <p style="font-size: 19px; color: #2b2b34">Tổng tiền: </p>
+                      <h4 style="color: red">{{totalCart.totalCostUser|number}} ₫</h4>
+                    </div>
+                    <button type="button" (click)="payPerfume()" class="btn btn-danger btn-block btn-lg"
+                            data-mdb-ripple-color="primary">Thanh toán
+                    </button>
                   </div>
-                  <hr class="my-4">
-                  <div class="d-flex justify-content-between mb-5">
-                    <p style="font-size: 19px; color: #2b2b34">Tổng tiền: </p>
-                    <h4 style="color: red">{{totalMoney|number}} ₫</h4>
-                  </div>
-                  <button type="button" (click)="payPerfume()" class="btn btn-danger btn-block btn-lg"
-                          data-mdb-ripple-color="primary">Thanh toán
-                  </button>
                 </div>
               </div>
+              <ng-template #cartIsEmpty>
+                <div class="row g-0">
+                  <img class="d-flex justify-content-center "
+                       width="50%"/>
+                </div>
+              </ng-template>
             </div>
-            <ng-template #cartIsEmpty>
-              <div class="row g-0">
-                <img class="d-flex justify-content-center "
-                     width="50%"/>
-              </div>
-            </ng-template>
           </div>
         </div>
       </div>
     </div>
-  </div>
   </section>
 </div>
 

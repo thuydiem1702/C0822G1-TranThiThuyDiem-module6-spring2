@@ -41,8 +41,8 @@ public class PerfumeService implements IPerfumeService {
     }
 
     @Override
-    public void delete(Integer id) {
-        perfumeRepository.deletePerfume(id);
+    public void deletePerfume(Integer idPerfume) {
+        perfumeRepository.deletePerfume(idPerfume);
     }
 
     @Override
@@ -103,7 +103,7 @@ public class PerfumeService implements IPerfumeService {
     public void changeQuantity(Long idUser, Long valueChange, Long idPerfume) {
         List<IOrderDetail> orderDetails = iCartRepository.getPerfumeInCart(idUser);
         for (int i = 0; i < orderDetails.size(); i++) {
-            if (orderDetails.get(i).getIdPerfume() == idPerfume && orderDetails.get(i).getQuantity() < 2) {
+            if (orderDetails.get(i).getIdPerfume() == idPerfume && orderDetails.get(i).getQuantity() < 2 && valueChange == 0) {
                 iCartRepository.deletePerfumeByIdOrder(orderDetails.get(i).getIdOrder());
                 return;
             } else if (orderDetails.get(i).getIdPerfume() == idPerfume && valueChange == 1) {

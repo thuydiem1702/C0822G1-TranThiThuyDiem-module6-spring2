@@ -24,10 +24,11 @@ public class HomeController {
         }
         Page<Perfume> perfumePage = perfumeService.getAllPerfume(pageable, name);
         if (perfumePage.getTotalElements() == 0) {
-            return new ResponseEntity<>( name , HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(name, HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(perfumePage, HttpStatus.OK);
     }
+
     @GetMapping("quantity")
     public ResponseEntity<Page<Perfume>> pageResponseEntityByQuantity(@PageableDefault(value = 5) Pageable pageable) {
         Page<Perfume> perfumePage = perfumeService.getPerfumeByQuantity(pageable);

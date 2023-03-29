@@ -61,6 +61,7 @@ export class BodyComponent implements OnInit {
 
 
   ngOnInit(): void {
+    window.scrollTo(0, 0);
     this.title.setTitle('Trang chủ');
     this.isLogged = this.token.isLogger();
     this.loader();

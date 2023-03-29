@@ -19,7 +19,6 @@ public class Cart {
     @JoinColumn(name = "user_id", nullable = false, referencedColumnName = "id")
     private User user;
 
-
     public Long getId() {
         return id;
     }

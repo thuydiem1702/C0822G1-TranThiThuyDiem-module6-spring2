@@ -5,6 +5,7 @@ import {ActivatedRoute} from '@angular/router';
 import {ShareService} from '../../login/service/share.service';
 import {IOrderDetail} from '../../dto/IOrderDetail';
 import {PerfumeService} from '../../service/perfume.service';
+import {ITotalCart} from '../../entity/itotal-cart';
 
 @Component({
   selector: 'app-cart',
@@ -19,16 +20,24 @@ export class CartComponent implements OnInit {
   idUser = 0;
   totalMoney = 0;
   perfumeCount = 0;
+  totalCart: ITotalCart = {};
 
   constructor(private perfumeService: PerfumeService,
               private token: TokenService,
               private activatedRoute: ActivatedRoute,
               private share: ShareService) {
+    this.share.getClickEvent().subscribe(next => {
+      this.getPerfumeInCart();
+      this.getCostTotal();
+
+    });
   }
 
 
   ngOnInit(): void {
+    window.scrollTo(0, 0);
     this.getPerfumeInCart();
+    this.getCostTotal();
   }
 
   getPerfumeInCart() {
@@ -40,13 +49,13 @@ export class CartComponent implements OnInit {
     this.perfumeService.getPerfumeInCart(this.idUser).subscribe(next => {
       this.iOderDetailList = next;
       // tslint:disable-next-line:prefer-for-of
-      for (let i = 0; i < this.iOderDetailList.length; i++) {
-        this.totalMoney += this.iOderDetailList[i].money;
-        this.perfumeCount += this.iOderDetailList[i].quantity;
-      }
-      this.share.changeData({
-        quantity: this.perfumeCount
-      });
+      // for (let i = 0; i < this.iOderDetailList.length; i++) {
+      //   this.totalMoney += this.iOderDetailList[i].money;
+      //   this.perfumeCount = this.iOderDetailList[i].quantity;
+      // }
+      // this.share.changeData({
+      //   quantity: this.perfumeCount
+      // });
     }, error => {
     });
   }
@@ -72,13 +81,31 @@ export class CartComponent implements OnInit {
     });
   }
 
+  private getCostTotal() {
+    this.perfumeService.total(this.idUser).subscribe(data => {
+        this.totalCart = data;
+      }
+      , error => {
+      },
+      () => {
+      });
+  }
 
   changeQuantity(valueChange: any, idPerfume: any) {
     // tslint:disable-next-line:radix
     this.perfumeService.changeQuantity(this.idUser, parseInt(valueChange), idPerfume).subscribe(next => {
-      console.log('Id user ' + this.idUser);
-      console.log('value change ' + valueChange);
-      console.log('Id perfume ' + idPerfume);
+      this.share.sendClickEvent();
+    }, error => {
+      alert('Thất bại');
+    });
+  }
+
+  deletePerfumeByIdOrder(oderDetail: IOrderDetail) {
+    this.perfumeService.deleteCart(oderDetail.idOrder).subscribe(next => {
+      // this.getPerfumeInCart();
+      this.share.sendClickEvent();
+      this.getPerfumeInCart();
+      this.getCostTotal();
     }, error => {
       alert('Thất bại');
     });

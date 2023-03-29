@@ -51,6 +51,7 @@ export class DetailPerfumeComponent implements OnInit {
 
 
   ngOnInit(): void {
+    window.scrollTo(0, 0);
     this.title.setTitle('Trang chủ');
     this.isLogged = this.token.isLogger();
     this.loader();
@@ -87,13 +88,15 @@ export class DetailPerfumeComponent implements OnInit {
     });
   }
 
-  addCart(idPerfume: any) {
+  addCart(idPerfume: number) {
     this.idUserTest = this.token.getId();
     console.log(this.idUser);
     if (this.idUserTest != null) {
       // tslint:disable-next-line:radix
       this.idUser = parseInt(this.idUserTest);
     }
+    console.log('id sản phẩm' + this.perfume);
+    console.log('id User' + this.idUser);
     this.perfumeService.addCart(idPerfume, this.idUser).subscribe(next => {
       Swal.fire({
         position: 'center',

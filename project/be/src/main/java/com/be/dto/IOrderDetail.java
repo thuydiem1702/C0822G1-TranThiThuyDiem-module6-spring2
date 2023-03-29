@@ -9,6 +9,8 @@ public interface IOrderDetail {
 
     double getPrice();
 
+    String getImage();
+
     int getQuantity();
 
     double getMoney();

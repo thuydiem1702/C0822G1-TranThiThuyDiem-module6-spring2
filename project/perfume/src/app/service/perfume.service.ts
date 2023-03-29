@@ -58,6 +58,7 @@ export class PerfumeService {
   searchPerfumeByName(name: string, page: number): Observable<any> {
     return this.httpClient.get<any>('http://localhost:8080/home/search?name=' + name + '&page=' + page);
   }
+
   searchPerfumeByPrice(price: string, page: number): Observable<any> {
     return this.httpClient.get<any>('http://localhost:8080/home/search?price=' + price + '&page=' + page);
   }
@@ -84,6 +85,7 @@ export class PerfumeService {
   }
 
   getPerfumeInCart(idUser: number): Observable<IOrderDetail[]> {
+    console.log('LO LO');
     return this.httpClient.get<IOrderDetail[]>('http://localhost:8080/api/perfume/get-perfume-in-cart/' + idUser);
   }
 
@@ -95,5 +97,14 @@ export class PerfumeService {
 
   changeQuantity(idUser: number, valueChange: number, idPerfume: number) {
     return this.httpClient.get('http://localhost:8080/api/perfume/change-quantity/' + idUser + '/' + valueChange + '/' + idPerfume);
+  }
+
+  total(idUser: string | number | undefined) {
+    return this.httpClient.get('http://localhost:8080/api/perfume/total?idAccount=' + idUser);
+  }
+
+  deleteCart(idOrder: number) {
+    console.log('alo delete nè');
+    return this.httpClient.delete('http://localhost:8080/api/perfume/delete/' + idOrder);
   }
 }

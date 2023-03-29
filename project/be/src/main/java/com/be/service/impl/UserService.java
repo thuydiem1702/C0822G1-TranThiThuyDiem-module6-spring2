@@ -130,4 +130,9 @@ public class UserService implements IUserService {
     public User userLogin(String username) {
         return iUserRepository.userLogin(username);
     }
+
+    @Override
+    public Optional<User> findByIdAccount(Integer idAccount) {
+        return iUserRepository.findById(idAccount);
+    }
 }
