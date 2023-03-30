@@ -43,7 +43,6 @@ export class BodyComponent implements OnInit {
   nameSearch = '';
   perfume: Perfume = {};
 
-  // tslint:disable-next-line:max-line-length
   constructor(private title: Title,
               private token: TokenService,
               private perfumeService: PerfumeService,
@@ -164,18 +163,4 @@ export class BodyComponent implements OnInit {
       alert('rỗng');
     });
   }
-
-  // getList(size: number) {
-  //   this.perfumeService.getAll(size).subscribe(data => {
-  //     if (data != null) {
-  //       this.pagePerfume = data.content;
-  //       this.numberPage = data.number;
-  //       this.size = data.size;
-  //       this.totalPages = data.totalPages;
-  //       this.first = data.first;
-  //       this.last = data.last;
-  //       this.shareService.sendClickEvent();
-  //     }
-  //   });
-  // }
 }

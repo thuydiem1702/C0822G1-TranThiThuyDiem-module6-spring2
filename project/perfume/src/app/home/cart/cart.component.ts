@@ -6,6 +6,7 @@ import {ShareService} from '../../login/service/share.service';
 import {IOrderDetail} from '../../dto/IOrderDetail';
 import {PerfumeService} from '../../service/perfume.service';
 import {ITotalCart} from '../../entity/itotal-cart';
+import {render} from 'creditcardpayments/creditCardPayments';
 
 @Component({
   selector: 'app-cart',
@@ -31,11 +32,39 @@ export class CartComponent implements OnInit {
       this.getCostTotal();
 
     });
+    // render({
+    //   id: '#myPaypalButtons',
+    //   currency: 'USD',
+    //   value: '100.00',
+    //   onApprove: (details => {
+    //     Swal.fire({
+    //       position: 'center',
+    //       title: 'Thanh toán thành công',
+    //       icon: 'success',
+    //       showConfirmButton: false,
+    //       timer: 2000
+    //     });
+    //   })
+    // });
   }
 
 
   ngOnInit(): void {
     window.scrollTo(0, 0);
+    render({
+      id: '#myPaypalButtons',
+      currency: 'USD',
+      value: '100.00',
+      onApprove: (details => {
+        Swal.fire({
+          position: 'center',
+          title: 'Thanh toán thành công',
+          icon: 'success',
+          showConfirmButton: false,
+          timer: 2000
+        });
+      })
+    });
     this.getPerfumeInCart();
     this.getCostTotal();
   }

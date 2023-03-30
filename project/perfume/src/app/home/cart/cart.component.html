@@ -35,7 +35,7 @@
                         <h6 class="mb-0" style="color: red">{{oderDetail.price|number}}₫</h6>
                       </div>
                       <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                        <a class="text-muted"><i class="fas fa-times" (click)="deletePerfumeByIdOrder(oderDetail)"></i></a >
+                        <a class="text-muted"><i class="fas fa-times" (click)="deletePerfumeByIdOrder(oderDetail)"></i></a>
                       </div>
                     </div>
                     <hr class="my-4">
@@ -65,9 +65,13 @@
                       <p style="font-size: 19px; color: #2b2b34">Tổng tiền: </p>
                       <h4 style="color: red">{{totalCart.totalCostUser|number}} ₫</h4>
                     </div>
-                    <button type="button" (click)="payPerfume()" class="btn btn-danger btn-block btn-lg"
-                            data-mdb-ripple-color="primary">Thanh toán
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                      Thanh Toán
                     </button>
+<!--                    <div id="myPaypalButtons"></div>-->
+<!--                    <button type="button" (click)="payPerfume()" class="btn btn-danger btn-block btn-lg"-->
+<!--                            data-mdb-ripple-color="primary">Thanh toán-->
+<!--                    </button>-->
                   </div>
                 </div>
               </div>
@@ -85,3 +89,16 @@
   </section>
 </div>
 
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Chọn phương thức thanh toán</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div id="myPaypalButtons"></div>
+      </div>
+    </div>
+  </div>
+</div>
