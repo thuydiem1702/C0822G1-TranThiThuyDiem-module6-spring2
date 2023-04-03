@@ -93,17 +93,18 @@
               <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             </a>
           </div>
-          <li *ngFor="let perfume of perfumes" >
+          <li *ngFor="let perfume of perfumes">
             <div class="product-item">
               <div class="product-top">
                 <a href="" class="product-thumb">
                   <img [src]="perfume.image">
                 </a>
-                <a class="buy-now" data-toggle="modal" (click)="watchDetail(perfume)" data-target="#detail">Mua
+                <a class="buy-now" data-toggle="modal" data-target="#detail"
+                   [routerLink]='["/cart"]' (click)="addCart(perfume.idPerfume)">Mua
                   ngay</a>
               </div>
             </div>
-            <div class="product-info" >
+            <div class="product-info">
               <a href="" class="product-cat"></a>
               <a href="" class="product-name">{{perfume.name | titlecase | slice: 0 :20 }}<span
                 style="background-color: lightgray;color: #007bff;font-weight: 600"
@@ -147,7 +148,9 @@
                   <button class="btn  icon-fallback-text h-100" style="background-color:cornflowerblue"
                           [routerLink]='["/detail",perfume.idPerfume]'>Xem chi tiết
                   </button>
-                  <button class="btn  icon-fallback-text h-100" style="background-color:orange; margin-left: 10px" >Mua
+                  <button [routerLink]='["/cart"]' (click)="addCart(perfume.idPerfume)"
+                          class="btn  icon-fallback-text h-100"
+                          style="background-color:orange; margin-left: 10px">Mua
                     ngay
                   </button>
                 </div>

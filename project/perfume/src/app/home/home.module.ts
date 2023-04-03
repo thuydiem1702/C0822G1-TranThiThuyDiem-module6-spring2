@@ -8,6 +8,7 @@ import {AngularFireStorageModule} from '@angular/fire/storage';
 import {AngularFireModule} from '@angular/fire';
 import {environment} from '../../environments/environment';
 import {RouterModule} from '@angular/router';
+import { OderCreateComponent } from './cart/oder/oder-create/oder-create.component';
 
 
 @NgModule({

@@ -64,16 +64,6 @@ export class DetailPerfumeComponent implements OnInit {
     this.isLogged = this.token.isLogger();
   }
 
-  // getPerfumeByQuantitySold(page: number) {
-  //   this.perfumeService.getAllByQuantitySold(page).subscribe(data => {
-  //     this.perfumesByQuantitySold = data.content;
-  //     this.numberQuantitySold = data.number;
-  //     this.totalPagesQuantitySold = data.totalPages;
-  //     this.firstPageQuantitySold = data.first;
-  //     this.lastPageQuantitySold = data.last;
-  //   });
-  // }
-
   getPerfumeByQuantitySold() {
     this.activatedRoute.paramMap.subscribe(next => {
       const id = next.get('id');
@@ -98,6 +88,7 @@ export class DetailPerfumeComponent implements OnInit {
     console.log('id sản phẩm' + this.perfume);
     console.log('id User' + this.idUser);
     this.perfumeService.addCart(idPerfume, this.idUser).subscribe(next => {
+      this.shareService.sendClickEvent();
       Swal.fire({
         position: 'center',
         title: 'Thêm vào giỏ thành công',

@@ -25,7 +25,7 @@
                         <button class="btn btn-link px-2" (click)="changeQuantity(0,oderDetail.idPerfume)">
                           <i class="fas fa-minus"></i>
                         </button>
-                        <input id="form1" min="0" name="quantity" value="{{oderDetail.quantity}}" type="number"
+                        <input id="form1" min="0" name="quantity" value="{{oderDetail.quantity}}"
                                class="form-control form-control-sm" style="width: 50px"/>
                         <button class="btn btn-link px-2" (click)="changeQuantity(1,oderDetail.idPerfume)">
                           <i class="fas fa-plus"></i>
@@ -65,14 +65,16 @@
                       <p style="font-size: 19px; color: #2b2b34">Tổng tiền: </p>
                       <h4 style="color: red">{{totalCart.totalCostUser|number}} ₫</h4>
                     </div>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                      Thanh Toán
-                    </button>
-<!--                    <div id="myPaypalButtons"></div>-->
-<!--                    <button type="button" (click)="payPerfume()" class="btn btn-danger btn-block btn-lg"-->
-<!--                            data-mdb-ripple-color="primary">Thanh toán-->
+<!--                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"-->
+<!--                            (click)="payment(totalCart.totalCostUser)">-->
+<!--                      Thanh Toán-->
 <!--                    </button>-->
+
+                    <button routerLink="/oder/create">
+                      Thanh toan
+                    </button>
                   </div>
+
                 </div>
               </div>
               <ng-template #cartIsEmpty>
@@ -89,16 +91,5 @@
   </section>
 </div>
 
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Chọn phương thức thanh toán</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div id="myPaypalButtons"></div>
-      </div>
-    </div>
-  </div>
-</div>
+
+

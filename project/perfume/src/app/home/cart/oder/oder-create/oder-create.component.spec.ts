@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NoticeComponent } from './notice.component';
+import { OderCreateComponent } from './oder-create.component';
 
-describe('NoticeComponent', () => {
-  let component: NoticeComponent;
-  let fixture: ComponentFixture<NoticeComponent>;
+describe('OderCreateComponent', () => {
+  let component: OderCreateComponent;
+  let fixture: ComponentFixture<OderCreateComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NoticeComponent ]
+      declarations: [ OderCreateComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(NoticeComponent);
+    fixture = TestBed.createComponent(OderCreateComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

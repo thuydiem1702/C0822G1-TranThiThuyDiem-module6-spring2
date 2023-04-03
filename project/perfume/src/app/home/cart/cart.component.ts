@@ -19,9 +19,10 @@ export class CartComponent implements OnInit {
   public countQuantity = 0;
   idUserTest: string | null = '';
   idUser = 0;
-  totalMoney = 0;
+  totalMoney: string;
   perfumeCount = 0;
   totalCart: ITotalCart = {};
+  isShow: boolean;
 
   constructor(private perfumeService: PerfumeService,
               private token: TokenService,
@@ -51,22 +52,11 @@ export class CartComponent implements OnInit {
 
   ngOnInit(): void {
     window.scrollTo(0, 0);
-    render({
-      id: '#myPaypalButtons',
-      currency: 'USD',
-      value: '100.00',
-      onApprove: (details => {
-        Swal.fire({
-          position: 'center',
-          title: 'Thanh toán thành công',
-          icon: 'success',
-          showConfirmButton: false,
-          timer: 2000
-        });
-      })
-    });
+    this.share.sendClickEvent();
     this.getPerfumeInCart();
     this.getCostTotal();
+
+
   }
 
   getPerfumeInCart() {
@@ -125,7 +115,6 @@ export class CartComponent implements OnInit {
     this.perfumeService.changeQuantity(this.idUser, parseInt(valueChange), idPerfume).subscribe(next => {
       this.share.sendClickEvent();
     }, error => {
-      alert('Thất bại');
     });
   }
 
@@ -137,6 +126,24 @@ export class CartComponent implements OnInit {
       this.getCostTotal();
     }, error => {
       alert('Thất bại');
+    });
+  }
+
+  payment(totalCostUser: number) {
+    this.totalMoney = String(+((totalCostUser / 23485.48).toFixed(2)));
+    render({
+      id: '#myPaypalButtons',
+      currency: 'USD',
+      value: '',
+      onApprove: (details => {
+        Swal.fire({
+          position: 'center',
+          title: 'Thanh toán thành công',
+          icon: 'success',
+          showConfirmButton: false,
+          timer: 2000
+        });
+      })
     });
   }
 }

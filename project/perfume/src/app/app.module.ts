@@ -16,13 +16,15 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AuthInterceptor} from './login/security/auth.interceptor';
 import {AngularFireStorage} from '@angular/fire/storage';
 import {DetailPerfumeComponent} from './home/detail-perfume/detail-perfume.component';
+import {OderCreateComponent} from './home/cart/oder/oder-create/oder-create.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    DetailPerfumeComponent],
+    DetailPerfumeComponent,
+    OderCreateComponent],
   imports: [
     CommonModule,
     BrowserModule,

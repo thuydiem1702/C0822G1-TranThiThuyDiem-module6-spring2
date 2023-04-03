@@ -20,6 +20,9 @@ export class BodyComponent implements OnInit {
   last: any;
   first: any;
 
+  idUserTest: string | null = '';
+  idUser = 0;
+
   cart: Cart = {
     id: 0,
     name: '',
@@ -58,7 +61,6 @@ export class BodyComponent implements OnInit {
     this.getPerfumeByQuantitySold(0);
   }
 
-
   ngOnInit(): void {
     window.scrollTo(0, 0);
     this.title.setTitle('Trang chủ');
@@ -89,7 +91,6 @@ export class BodyComponent implements OnInit {
     });
   }
 
-
   searchPerfume(name: string, page: number) {
     this.perfumeService.searchPerfumeByName(name, page).subscribe(data => {
       this.perfumes = data.content;
@@ -109,10 +110,6 @@ export class BodyComponent implements OnInit {
         }
       );
     });
-  }
-
-  watchDetail(perfume: Perfume) {
-    this.perfume = perfume;
   }
 
   addToCart(ids: number, images: string, names: string, prices: number) {
@@ -161,6 +158,35 @@ export class BodyComponent implements OnInit {
       this.perfumes = next;
     }, error => {
       alert('rỗng');
+    });
+  }
+
+  addCart(idPerfume: number) {
+    this.idUserTest = this.token.getId();
+    console.log(this.idUser);
+    if (this.idUserTest != null) {
+      // tslint:disable-next-line:radix
+      this.idUser = parseInt(this.idUserTest);
+    }
+    console.log('id sản phẩm' + this.perfume);
+    console.log('id User' + this.idUser);
+    this.perfumeService.addCart(idPerfume, this.idUser).subscribe(next => {
+      this.shareService.sendClickEvent();
+      Swal.fire({
+        position: 'center',
+        title: 'Thêm vào giỏ thành công',
+        icon: 'success',
+        showConfirmButton: false,
+        timer: 1000
+      });
+    }, error => {
+      Swal.fire({
+        position: 'center',
+        title: 'Vui lòng đăng nhập để mua hàng',
+        icon: 'error',
+        showConfirmButton: false,
+        timer: 2000
+      });
     });
   }
 }

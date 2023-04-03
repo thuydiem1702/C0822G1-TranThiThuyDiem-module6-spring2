@@ -1,8 +1,6 @@
 package com.be.controller.perfumeController;
 
-import com.be.model.perfume.Concentration;
 import com.be.model.perfume.Fragrant;
-import com.be.service.IConcentrationService;
 import com.be.service.IFragrantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
