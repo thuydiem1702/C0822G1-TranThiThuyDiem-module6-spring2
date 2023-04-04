@@ -51,4 +51,11 @@ public class CartService implements ICartService {
     public Optional<Cart> findById(Long id) {
         return iCartRepository.findById(id);
     }
+
+    @Override
+    public void updatePaymentStatus(Long idOrderDetail) {
+        iCartRepository.updatePaymentStatus(idOrderDetail);
+    }
+
+
 }

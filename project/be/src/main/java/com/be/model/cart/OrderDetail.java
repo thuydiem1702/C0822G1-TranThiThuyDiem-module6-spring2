@@ -1,6 +1,7 @@
 package com.be.model.cart;
 
 import com.be.model.perfume.Perfume;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
 
@@ -11,9 +12,11 @@ public class OrderDetail {
     private Long id;
     private int quantity;
     private boolean flag;
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "id_perfume", nullable = false, referencedColumnName = "id_perfume")
     private Perfume perfume;
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "cart_id", nullable = false, referencedColumnName = "id")
     private Cart cart;

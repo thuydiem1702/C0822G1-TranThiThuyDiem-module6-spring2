@@ -37,6 +37,10 @@ public interface ICartRepository extends JpaRepository<Cart, Long> {
     @Query(value = "update order_detail set flag = true where order_detail.id = :idOrderDetail", nativeQuery = true)
     void deletePerfumeByIdOrder(@Param("idOrderDetail") Long idOrderDetail);
 
+    @Modifying
+    @Query(value = "update order_detail set flag = true where id = :idOrderDetail", nativeQuery = true)
+    void updatePaymentStatus(@Param("idOrderDetail") Long idOrderDetail);
+
     @Query(value = "select sum(od.quantity*p.price) as totalCostUser, sum(od.quantity) as quantityUser from cart c join order_detail od on c.id = od.cart_id join perfume p on od.id_perfume = p.id_perfume where c.user_id = :idUser and od.flag= false",
             nativeQuery = true)
     ITotalCart totalCostUser(@Param("idUser") int idUser);

@@ -2,7 +2,9 @@ package com.be.controller.perfumeController;
 
 import com.be.dto.IOrderDetail;
 import com.be.dto.ITotalCart;
+import com.be.dto.OderDetailDto;
 import com.be.model.cart.Cart;
+import com.be.model.cart.OrderDetail;
 import com.be.model.perfume.Perfume;
 import com.be.model.user.User;
 import com.be.service.ICartService;
@@ -59,16 +61,6 @@ public class PerfumeController {
         return new ResponseEntity<>(perfumeList, HttpStatus.OK);
     }
 
-//    @DeleteMapping("/delete/{idPerfume}")
-//    public ResponseEntity<Perfume> delete(@PathVariable("idPerfume") Integer idPerfume) {
-//        Perfume perfume = perfumeService.findPerfume(idPerfume);
-//        if (perfume == null) {
-//            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-//        }
-//        perfumeService.deletePerfume(idPerfume);
-//        return new ResponseEntity<>(HttpStatus.OK);
-//    }
-
     @GetMapping("/search/{id}/{type}")
     public ResponseEntity<Page<Perfume>> search(@PathVariable("id") int id, @PathVariable("type") String type, @PageableDefault(value = 5) Pageable pageable) {
         switch (id) {
@@ -85,24 +77,6 @@ public class PerfumeController {
         }
     }
 
-//    @PostMapping("/create")
-//    public ResponseEntity<?> createPerfume(@RequestBody @Validated PerfumeDto perfumeDto, BindingResult bindingResult) {
-//        Map<String, String> check = perfumeService.checkCreate(perfumeDto);
-//        if (check.get("errorName") != null) {
-//            bindingResult.rejectValue("name", "name", check.get("errorName"));
-//        }
-//        if (check.get("errorCode") != null) {
-//            bindingResult.rejectValue("codeQr", "codeQr", check.get("errorCode"));
-//        }
-//        if (bindingResult.hasErrors()) {
-//            return new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.NOT_MODIFIED);
-//        }
-//        Perfume perfume = new Perfume();
-//        BeanUtils.copyProperties(perfumeDto, perfume);
-//        perfumeService.addPerfume(perfume);
-//        return new ResponseEntity<>(HttpStatus.OK);
-//    }
-
     @GetMapping("/{id}")
     public ResponseEntity<Perfume> findById(@PathVariable("id") Integer id) {
         Perfume perfume = perfumeService.findPerfume(id);
@@ -111,27 +85,6 @@ public class PerfumeController {
         }
         return new ResponseEntity<>(perfume, HttpStatus.OK);
     }
-
-//    @PutMapping("/edit/{id}")
-//    public ResponseEntity<?> editPerfume(@RequestBody @Validated PerfumeDto perfumeDto, BindingResult bindingResult, @PathVariable("id") Integer id) {
-//        Perfume perfume = perfumeService.findPerfume(id);
-//        Map<String, String> check = perfumeService.checkUpdate(perfumeDto);
-//        if (check.get("errorName") != null) {
-//            bindingResult.rejectValue("name", "name", check.get("errorName"));
-//        }
-//        if (check.get("errorCode") != null) {
-//            bindingResult.rejectValue("code", "code", check.get("errorCode"));
-//        }
-//        if (bindingResult.hasErrors()) {
-//            return new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.NOT_MODIFIED);
-//        }
-//        if (perfume == null) {
-//            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-//        }
-//        BeanUtils.copyProperties(perfumeDto, perfume);
-//        perfumeService.editPerfume(perfume);
-//        return new ResponseEntity<>(HttpStatus.OK);
-//    }
 
     @GetMapping("/getList")
     public ResponseEntity<List<Perfume>> getList() {
@@ -159,9 +112,6 @@ public class PerfumeController {
     @GetMapping("/get-perfume-in-cart/{idUser}")
     public ResponseEntity<List<IOrderDetail>> getPerfumeInCart(@PathVariable("idUser") Long idUser) {
         List<IOrderDetail> orderDetailList = cartService.getPerfumeInCart(idUser);
-//        if (orderDetailList.isEmpty()) {
-//            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-//        }
         return new ResponseEntity<>(orderDetailList, HttpStatus.OK);
     }
 
@@ -193,11 +143,16 @@ public class PerfumeController {
 
     @DeleteMapping("/delete/{idOrderDetail}")
     public ResponseEntity<Cart> delete(@PathVariable("idOrderDetail") Long idOrderDetail) {
-//        Optional<Cart> cart = cartService.findById(idOrderDetail);
-//        if (cart == null) {
-//            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-//        }
         iCartService.deletePerfumeByIdOrder(idOrderDetail);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PostMapping("/payment")
+    public ResponseEntity<?> updatePaymentStatus(@RequestBody List<OderDetailDto> orderDetails) {
+        for (OderDetailDto o : orderDetails) {
+            cartService.updatePaymentStatus(o.getId());
+        }
+
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }

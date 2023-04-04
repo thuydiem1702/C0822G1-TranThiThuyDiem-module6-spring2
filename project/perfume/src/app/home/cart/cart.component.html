@@ -8,7 +8,7 @@
             <div class="card-body p-0">
               <div class="row g-0">
                 <div class="col-lg-8">
-                  <div class="p-5">
+                  <div class="p-5" *ngIf="iOderDetailList.length != 0; else elseBlock">
                     <div class="d-flex justify-content-between align-items-center mb-5">
                       <h3 class="fw-bold mb-0 ">Giỏ hàng của bạn</h3>
                     </div>
@@ -39,6 +39,8 @@
                       </div>
                     </div>
                     <hr class="my-4">
+                    <div style="margin-bottom: 1%; margin-left: 10px" routerLink="/"><< Quay lại trang chủ</div>
+
                   </div>
                 </div>
                 <div class="col-lg-4 bg-grey">
@@ -48,40 +50,55 @@
                     <div class="d-flex justify-content-between mb-4">
                       <h5>Số mặt hàng: <span style="margin-left: 10px">{{totalCart.quantityUser}}</span></h5>
                     </div>
-                    <h5>Vận chuyển: </h5>
-                    <div class="mb-4 pb-2">
-                      <input type="text" placeholder="Nhập địa chỉ"
-                             class="form-control form-control-lg"/>
-                    </div>
-                    <h5>Mã giảm giá:</h5>
-                    <div class="mb-5">
-                      <div class="form-outline">
-                        <input type="text" id="form3Examplea2" placeholder="Nhập mã giảm giá"
-                               class="form-control form-control-lg"/>
+                    <div class="row">
+                      <div class="col-lg-4">
+                        <img src="https://hadibeauty.com/wp-content/uploads/2021/10/Group-56-1.png">
+                      </div>
+                      <div class="col-lg-8">
+                        <div class="text_quality"><b>Phí ship cực rẻ</b></div>
+                        <div class="text_des">D3T hỗ trợ phí ship cực ưu đãi</div>
                       </div>
                     </div>
+                    <br>
+                    <div class="row">
+                      <div class="col-lg-4">
+                        <img src="https://hadibeauty.com/wp-content/uploads/2021/10/Group-66-1.png" alt="">
+                      </div>
+                      <div class="col-lg-8">
+                        <div class="text_quality"><b>Cam kết chính hãng</b></div>
+                        <div class="text_des">Hoàn tiền 300% nếu hàng fake</div>
+                      </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                      <div class="col-lg-4">
+                        <img src="https://hadibeauty.com/wp-content/uploads/2021/10/Group-57-1.png" alt=""></div>
+                      <div class="col-lg-8">
+                        <div class="text_quality"><b>Uy tín 7 năm tại Đà Nẵng</b></div>
+                        <div class="text_des">Thương hiệu uy tín</div>
+                      </div>
+                    </div>
+
                     <hr class="my-4">
                     <div class="d-flex justify-content-between mb-5">
-                      <p style="font-size: 19px; color: #2b2b34">Tổng tiền: </p>
+                      <p style="font-size: 19px; color: #2b2b34"><b>Tổng tiền: </b></p>
                       <h4 style="color: red">{{totalCart.totalCostUser|number}} ₫</h4>
                     </div>
-<!--                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"-->
-<!--                            (click)="payment(totalCart.totalCostUser)">-->
-<!--                      Thanh Toán-->
-<!--                    </button>-->
-
-                    <button routerLink="/oder/create">
-                      Thanh toan
+                    <button routerLink="/oder/create" type="button" class="btn btn-warning btn-lg btn-block"
+                            style="margin-left: 60px" (click)="payment(totalCostUser)">
+                      Thanh toán
                     </button>
                   </div>
 
                 </div>
               </div>
-              <ng-template #cartIsEmpty>
-                <div class="row g-0">
-                  <img class="d-flex justify-content-center "
-                       width="50%"/>
+              <ng-template #elseBlock>
+                <div class="text-center m-5">
+                  <img
+                    src="https://firebasestorage.googleapis.com/v0/b/perfume-3c9a8.appspot.com/o/gio%20hang%20trong.png?alt=media&token=5294fe12-59ca-4ec5-97c2-c70b3244a6ec"
+                    height="300" width="400" style="margin-top: 100px"/>
                 </div>
+                <div style="margin-bottom: 1%; margin-left: 10px" routerLink="/"><< Quay lại trang chủ</div>
               </ng-template>
             </div>
           </div>

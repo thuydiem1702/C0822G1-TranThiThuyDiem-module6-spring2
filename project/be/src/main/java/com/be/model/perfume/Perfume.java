@@ -1,5 +1,7 @@
 package com.be.model.perfume;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 
 @Entity
@@ -15,19 +17,19 @@ public class Perfume {
     private Integer quantity;
     private String image;
     private Boolean flagDelete;
-
+    @JsonBackReference
     @ManyToOne()
     @JoinColumn(name = "id_category", nullable = false, referencedColumnName = "id_category")
     private Category category;
-
+    @JsonBackReference
     @ManyToOne()
     @JoinColumn(name = "id_concentration", nullable = false, referencedColumnName = "id_concentration")
     private Concentration concentration;
-
+    @JsonBackReference
     @ManyToOne()
     @JoinColumn(name = "id_fragrant", nullable = false, referencedColumnName = "id_fragrant")
     private Fragrant fragrant;
-
+    @JsonBackReference
     @ManyToOne()
     @JoinColumn(name = "id_trademark", nullable = false, referencedColumnName = "id_trademark")
     private Trademark trademark;

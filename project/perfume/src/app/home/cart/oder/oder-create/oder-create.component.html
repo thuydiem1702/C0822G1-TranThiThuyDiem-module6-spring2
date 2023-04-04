@@ -20,7 +20,7 @@
               <div>
                 <img style="width: 105px;height: 70px" sizes="(max-width: 300px) 100vw, 300px" [src]="cart.image">
                 <h6 class="my-0">{{cart.perfumeName}}</h6>
-                <small class="text-muted">{{cart.price |number}} x {{cart.quantity}}</small>
+                <small class="text-muted">{{(cart.price * cart.quantity) | number}}</small>
               </div>
               <span class="text-muted">{{cart.quantity|number}}</span>
             </div>
@@ -34,8 +34,7 @@
             </div>
             <div class="list-group-item d-flex justify-content-between">
               <hr class="mb-4">
-              <button  class="btn btn-primary btn-lg btn-block" type="submit" name="btnDatHang">Đặt
-                hàng</button>
+              <div style="margin-right: 170px;color: #046056"><b>CHỌN PHƯƠNG THỨC THANH TOÁN</b></div>
             </div>
             <div id="payments"></div>
           </div>

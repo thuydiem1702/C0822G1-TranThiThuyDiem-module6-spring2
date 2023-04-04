@@ -1,6 +1,7 @@
 package com.be.model.cart;
 
 import com.be.model.user.User;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
 
@@ -15,6 +16,7 @@ public class Cart {
     private boolean flag;
     private String phoneNumber;
     private String email;
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false, referencedColumnName = "id")
     private User user;

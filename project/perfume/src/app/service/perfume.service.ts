@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Perfume} from '../entity/perfume';
 import {IOrderDetail} from '../dto/IOrderDetail';
+import {Cart} from '../entity/cart';
 
 @Injectable({
   providedIn: 'root'
@@ -67,32 +68,21 @@ export class PerfumeService {
     return this.httpClient.get<any>('http://localhost:8080/api/perfume/list?size=' + size);
   }
 
-  addPerfume(perfume): Observable<any> {
-    return this.httpClient.post('http://localhost:8080/api/perfume/create', perfume);
-  }
 
   findPerfumeById(id): Observable<any> {
     return this.httpClient.get<any>('http://localhost:8080/api/perfume/' + id);
 
   }
 
-  editPerfume(id, perfume): Observable<any> {
-    return this.httpClient.put<any>('http://localhost:8080/api/perfume/edit/' + id, perfume);
-  }
 
   addCart(idPerfume: number, idUser: number) {
     return this.httpClient.get('http://localhost:8080/api/perfume/addOderDetail/' + idPerfume + '/' + idUser);
   }
 
   getPerfumeInCart(idUser: number): Observable<IOrderDetail[]> {
-    console.log('LO LO');
     return this.httpClient.get<IOrderDetail[]>('http://localhost:8080/api/perfume/get-perfume-in-cart/' + idUser);
   }
 
-
-  payPerfume(idUser: number) {
-    return this.httpClient.get<any>('http://localhost:8080/api/perfume/pay-perfume/' + idUser);
-  }
 
 
   changeQuantity(idUser: number, valueChange: number, idPerfume: number) {
@@ -104,7 +94,20 @@ export class PerfumeService {
   }
 
   deleteCart(idOrder: number) {
-    console.log('alo delete nè');
     return this.httpClient.delete('http://localhost:8080/api/perfume/delete/' + idOrder);
+  }
+
+  updatePaymentStatus(order){
+    let dto = []
+    for (let i = 0; i < order.length; i++) {
+      let dto2 = { id:order[i].idOrder,
+      quantity:order[i].quantity }
+      dto.push(dto2)
+    }
+    return this.httpClient.post('http://localhost:8080/api/perfume/payment',  dto);
+  }
+
+  getCartByIdUser(idUser : number): Observable<Cart>{
+    return this.httpClient.get<Cart>('http://localhost:8080/api/perfume/' + idUser)
   }
 }

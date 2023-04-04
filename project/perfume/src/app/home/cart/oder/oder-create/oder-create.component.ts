@@ -10,7 +10,7 @@ import {TokenService} from '../../../../login/service/token.service';
 import {ShareService} from '../../../../login/service/share.service';
 import {LoginService} from '../../../../login/service/login.service';
 import {IOrderDetail} from '../../../../dto/IOrderDetail';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -36,30 +36,41 @@ export class OderCreateComponent implements OnInit {
     deliveryAddress: new FormControl('', [Validators.required]),
     deliverPhone: new FormControl('', [Validators.required]),
   });
+  order: any;
+  roles: String[] = [];
 
   constructor(private perfumeService: PerfumeService,
               private token: TokenService,
               private activatedRoute: ActivatedRoute,
-              private share: ShareService, private loginService: LoginService) {
+              private share: ShareService, private loginService: LoginService,
+              private router: Router) {
+    this.idUser = parseInt(this.token.getId());
     this.share.getClickEvent().subscribe(next => {
-      // this.getPerfumeInCart();
-      // this.getCostTotal();
+      this.perfumeService.getPerfumeInCart(this.idUser).subscribe(next => {
+        this.order = next;
+      });
     });
   }
 
   ngOnInit(): void {
     window.scrollTo(0, 0);
-    this.share.sendClickEvent();
+    console.log('alo');
+
     this.getPerfumeInCart();
+
     this.getCostTotal();
     if (this.token.getToken()) {
       this.userName = this.token.getUsername();
       this.getUserById();
     }
+    this.perfumeService.getPerfumeInCart(this.idUser).subscribe(next => {
+      this.order = next;
+      console.log(this.order);
 
+    });
   }
 
-  loaderPayPal() {
+  loaderPayPal(idPerfume: number, idUser: number) {
     render(
       {
         id: '#payments',
@@ -67,13 +78,27 @@ export class OderCreateComponent implements OnInit {
         value: String(this.money),
         onApprove: (details) => {
 
-          Swal.fire({
-            position: 'center',
-            title: 'Thanh toán thành công',
-            icon: 'success',
-            showConfirmButton: false,
-            timer: 2000
-          });
+          this.perfumeService.updatePaymentStatus(this.order).subscribe(data => {
+              if (this.roles[0] != 'ROLE_ADMIN') {
+                this.perfumeService.addCart(parseInt(this.token.getId()), idUser).subscribe(
+                  next => {
+                    this.share.sendClickEvent();
+                  }
+                );
+              }
+              Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Mua hàng thành công!',
+                showConfirmButton: false,
+                timer: 1500
+              });
+              this.router.navigateByUrl('/');
+            }
+          );
+          this.share.sendClickEvent();
+          this.getPerfumeInCart();
+          this.getCostTotal();
         }
       }
     );
@@ -87,8 +112,9 @@ export class OderCreateComponent implements OnInit {
     }
     this.perfumeService.getPerfumeInCart(this.idUser).subscribe(next => {
       this.iOderDetailList = next;
-
+      console.log(next);
     }, error => {
+      console.log(error);
     });
   }
 
@@ -97,6 +123,7 @@ export class OderCreateComponent implements OnInit {
     this.perfumeService.total(this.idUser).subscribe(data => {
         this.totalCart = data;
         this.money = +(this.totalCart.totalCostUser / 23000).toFixed(2);
+        // @ts-ignore
         this.loaderPayPal();
       }
       , error => {
@@ -108,27 +135,8 @@ export class OderCreateComponent implements OnInit {
   getUserById() {
     this.loginService.profile(this.userName).subscribe(data => {
       this.user = data;
-      console.log(this.user);
     }, error => {
     }, () => {
     });
   }
-
-  // setOrder() {
-  //   this.oder = this.formOderCreate.value;
-  //   this.oder.userDto = this.user;
-  //   this.oder.purchaseHistorySet = this.cartList;
-  //   this.oder.orderValue = this.totalCart.totalCostUser;
-  // }
-  // createOder() {
-  //   this.setOrder();
-  //   this.cartService.createOrder(this.oder).subscribe(data => {
-  //     console.log(data);
-  //     this.cartService.totalCost(this.idUser);
-  //     this.temp = data;
-  //     this.shareService.sendClickEvent();
-  //   }, error => {
-  //   }, () => {
-  //   })
-  // }
 }

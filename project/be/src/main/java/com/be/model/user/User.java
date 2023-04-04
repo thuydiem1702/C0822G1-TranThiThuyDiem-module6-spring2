@@ -1,5 +1,7 @@
 package com.be.model.user;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -19,6 +21,7 @@ public class User {
     private Boolean gender;
     private String dateOfBirth;
     private String avatar;
+    @JsonBackReference
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> roles = new HashSet<>();
 

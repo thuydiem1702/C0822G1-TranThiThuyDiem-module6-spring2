@@ -2,6 +2,7 @@ package com.be.model.bill;
 
 import com.be.model.perfume.Perfume;
 import com.be.model.user.User;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
 
@@ -10,13 +11,13 @@ public class BillHistory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
+    @JsonBackReference
     @ManyToOne
     private Perfume perfume;
-
+    @JsonBackReference
     @ManyToOne
     private Bill bill;
-
+    @JsonBackReference
     @ManyToOne
     private User user;
 

@@ -52,10 +52,8 @@ export class CartComponent implements OnInit {
 
   ngOnInit(): void {
     window.scrollTo(0, 0);
-    this.share.sendClickEvent();
     this.getPerfumeInCart();
     this.getCostTotal();
-
 
   }
 
@@ -80,25 +78,27 @@ export class CartComponent implements OnInit {
   }
 
 
-  payPerfume() {
-    this.perfumeService.payPerfume(this.idUser).subscribe(next => {
-      Swal.fire({
-        position: 'center',
-        title: 'Thanh toán thành công',
-        icon: 'success',
-        showConfirmButton: false,
-        timer: 2000
-      });
-    }, error => {
-      Swal.fire({
-        position: 'center',
-        title: 'Thanh toán thành công',
-        icon: 'error',
-        showConfirmButton: false,
-        timer: 2000
-      });
-    });
-  }
+  // payPerfume() {
+  //   this.perfumeService.payPerfume(this.idUser).subscribe(next => {
+  //     Swal.fire({
+  //       position: 'center',
+  //       title: 'Thanh toán thành công',
+  //       icon: 'success',
+  //       showConfirmButton: false,
+  //       timer: 2000
+  //     });
+  //   }, error => {
+  //     Swal.fire({
+  //       position: 'center',
+  //       title: 'Thanh toán thành công',
+  //       icon: 'error',
+  //       showConfirmButton: false,
+  //       timer: 2000
+  //     });
+  //   });
+  // }
+  totalCostUser: number;
+  oderDetail: IOrderDetail;
 
   private getCostTotal() {
     this.perfumeService.total(this.idUser).subscribe(data => {
@@ -121,6 +121,13 @@ export class CartComponent implements OnInit {
   deletePerfumeByIdOrder(oderDetail: IOrderDetail) {
     this.perfumeService.deleteCart(oderDetail.idOrder).subscribe(next => {
       // this.getPerfumeInCart();
+      Swal.fire({
+        position: 'center',
+        title: 'Xoá sản phẩm thành công',
+        icon: 'success',
+        showConfirmButton: false,
+        timer: 2000
+      });
       this.share.sendClickEvent();
       this.getPerfumeInCart();
       this.getCostTotal();
@@ -131,6 +138,7 @@ export class CartComponent implements OnInit {
 
   payment(totalCostUser: number) {
     this.totalMoney = String(+((totalCostUser / 23485.48).toFixed(2)));
+    // this.payment(totalCostUser);
     render({
       id: '#myPaypalButtons',
       currency: 'USD',
@@ -143,6 +151,9 @@ export class CartComponent implements OnInit {
           showConfirmButton: false,
           timer: 2000
         });
+        // this.share.sendClickEvent();
+        // this.getPerfumeInCart();
+        // this.getCostTotal();
       })
     });
   }

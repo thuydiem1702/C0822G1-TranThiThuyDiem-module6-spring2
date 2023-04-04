@@ -16,10 +16,13 @@ public interface ICartService {
 
     void payPerfume(Long idUser);
 
-    void increaseQuantity( Long idOrderDetail);
+    void increaseQuantity(Long idOrderDetail);
 
     ITotalCart totalCart(User user);
 
-    void deletePerfumeByIdOrder( Long idOrderDetail);
+    void deletePerfumeByIdOrder(Long idOrderDetail);
+
     Optional<Cart> findById(Long id);
+
+    void updatePaymentStatus(Long idOrderDetail);
 }

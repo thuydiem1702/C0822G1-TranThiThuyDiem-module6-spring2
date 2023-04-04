@@ -1,6 +1,7 @@
 package com.be.model.bill;
 
 import com.be.model.user.User;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
 
@@ -14,6 +15,7 @@ public class Bill {
     private int quantity;
     private String paymentMethod;
     private Boolean billPrint;
+    @JsonBackReference
     @ManyToOne
     private User user;
 
