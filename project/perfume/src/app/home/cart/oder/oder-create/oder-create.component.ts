@@ -93,7 +93,7 @@ export class OderCreateComponent implements OnInit {
                 showConfirmButton: false,
                 timer: 1500
               });
-              this.router.navigateByUrl('/');
+              this.router.navigateByUrl('/history');
             }
           );
           this.share.sendClickEvent();

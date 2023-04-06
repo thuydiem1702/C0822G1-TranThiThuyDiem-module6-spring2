@@ -81,10 +81,10 @@ public interface IPerfumeRepository extends JpaRepository<Perfume, Integer> {
             " where id_perfume = :idPerfume", nativeQuery = true)
     void deletePerfume(@Param("idPerfume") Integer idPerfume);
 
-    @Query(value = "select * from perfume where perfume.name like concat('%', :name, '%')", nativeQuery = true)
+    @Query(value = "select * from perfume where perfume.name like concat('%', :name, '%') order by perfumeee.perfume.quantity desc ", nativeQuery = true)
     Page<Perfume> getAllPerfume(Pageable pageable, @Param("name") String name);
 
-    @Query(value = "select * from perfume", nativeQuery = true)
+    @Query(value = "select * from perfume ", nativeQuery = true)
     Page<Perfume> getAllPerfumeNoParam(Pageable pageable);
 
     @Query(value = "select * from `perfume` where name like concat('%',:name,'%')", nativeQuery = true)
@@ -95,7 +95,7 @@ public interface IPerfumeRepository extends JpaRepository<Perfume, Integer> {
             "ORDER BY quantity_sold")
     Page<Perfume> getPerfumeByQuantity(Pageable pageable, @Param("limit") Integer limit);
 
-    @Query(value = "select * from perfume", nativeQuery = true)
+    @Query(value = "select * from perfume ", nativeQuery = true)
     List<Perfume> getList();
 
     @Modifying

@@ -17,50 +17,10 @@ export class PerfumeService {
     return this.httpClient.get<any>('http://localhost:8080/api/perfume/list?size=' + size);
   }
 
-  // getAll2(): Observable<any> {
-  //   return this.httpClient.get<any>(this.URL_COMMODITY + '/getList');
-  // }
-  //
-  // delete(id: number) {
-  //   return this.httpClient.delete<any>('http://localhost:8080/api/perfume/delete/' + id);
-  // }
-  //
-  // changePage(page: number): Observable<Perfume[]> {
-  //   return this.httpClient.get<Perfume[]>('http://localhost:8080/api/perfume/list?page=' + page);
-  // }
-  //
-  // search(id: number, type: string): Observable<Perfume[]> {
-  //   return this.httpClient.get<Perfume[]>('http://localhost:8080/api/perfume/search/' + id + '/' + type);
-  // }
-  //
-  // search2(id: number, type: string, page: number): Observable<Perfume[]> {
-  //   return this.httpClient.get<Perfume[]>('http://localhost:8080/api/perfume/search/' + id + '/' + type + '?page=' + page);
-  // }
-  //
-  // getAllPerfume(request: any): Observable<any> {
-  //   const params = request;
-  //   return this.httpClient.get<any>(this.URL_COMMODITY, {params});
-  // }
-  //
-  // searchPerfume(name: any,
-  //               request: any): Observable<any> {
-  //   const params = request;
-  //   const url = this.URL_COMMODITY +
-  //     '?name=' + name;
-  //   return this.httpClient.get<any>(url, {params});
-  // }
-  //
-  // findById(id: number): Observable<Perfume> {
-  //   return this.httpClient.get<Perfume>(`${(this.URL_COMMODITY)}/${id}`);
-  // }
-
   searchPerfumeByName(name: string, page: number): Observable<any> {
     return this.httpClient.get<any>('http://localhost:8080/home/search?name=' + name + '&page=' + page);
   }
 
-  searchPerfumeByPrice(price: string, page: number): Observable<any> {
-    return this.httpClient.get<any>('http://localhost:8080/home/search?price=' + price + '&page=' + page);
-  }
 
   getAllByQuantitySold(size: number): Observable<any> {
     return this.httpClient.get<any>('http://localhost:8080/api/perfume/list?size=' + size);
@@ -75,9 +35,6 @@ export class PerfumeService {
     return this.httpClient.get('http://localhost:8080/api/perfume/addOderDetail/' + idPerfume + '/' + idUser);
   }
 
-  // getPerfumeInCart(idUser: number , value : string): Observable<IOrderDetail[]> {
-  //   return this.httpClient.get<IOrderDetail[]>('http://localhost:8080/api/perfume/get-perfume-in-cart/' + idUser + value);
-  // }
   getPerfumeInCart(idUser: number, value: string): Observable<IOrderDetail[]> {
     return this.httpClient.get<IOrderDetail[]>('http://localhost:8080/api/perfume/get-perfume-in-cart/' + idUser + '/' + value);
   }
@@ -106,11 +63,4 @@ export class PerfumeService {
     return this.httpClient.post('http://localhost:8080/api/perfume/payment', dto);
   }
 
-  getCartByIdUser(idUser: number): Observable<Cart> {
-    return this.httpClient.get<Cart>('http://localhost:8080/api/perfume/' + idUser);
-  }
-
-  getCartHistory(idUser: number, value: String): Observable<Cart> {
-    return this.httpClient.get<Cart>('http://localhost:8080/api/perfume/' + idUser + value);
-  }
 }

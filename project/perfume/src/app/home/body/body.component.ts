@@ -33,11 +33,6 @@ export class BodyComponent implements OnInit {
   isLogged = false;
 
   perfumesByQuantitySold: Perfume[];
-  numberQuantitySold = 0;
-  totalPagesQuantitySold: number;
-  firstPageQuantitySold: boolean;
-  lastPageQuantitySold: boolean;
-
   perfumes: Perfume[];
   number: number;
   totalPages: number;
@@ -78,10 +73,6 @@ export class BodyComponent implements OnInit {
   getPerfumeByQuantitySold(size: number) {
     this.perfumeService.getAllByQuantitySold(size).subscribe(data => {
       this.perfumesByQuantitySold = data.content;
-      this.numberQuantitySold = data.number;
-      this.totalPagesQuantitySold = data.totalPages;
-      this.firstPageQuantitySold = data.first;
-      this.lastPageQuantitySold = data.last;
 
       this.numberPage = data.number;
       this.size = data.size;
@@ -111,55 +102,6 @@ export class BodyComponent implements OnInit {
           timer: 10000
         }
       );
-    });
-  }
-
-  addToCart(ids: number, images: string, names: string, prices: number) {
-    if (this.token.getCart() !== undefined) {
-      this.carts = this.token.getCart();
-      this.cart.id = ids;
-      this.cart.name = names;
-      this.cart.image = images;
-      this.cart.price = prices;
-      if (this.token.checkExist(names)) {
-        this.token.upQuantity(ids, this.carts);
-      } else {
-        this.cart.quantity = 1;
-        this.carts.push(this.cart);
-      }
-      this.token.setCart(this.carts);
-      Swal.fire({
-        position: 'center',
-        icon: 'success',
-        title: 'Đã thêm sản phẩm ' + this.cart.name + ' vào giỏ hàng',
-        showConfirmButton: false,
-        timer: 2500
-      });
-    } else {
-      this.cart.id = ids;
-      this.cart.name = names;
-      this.cart.image = images;
-      this.cart.price = prices;
-      this.cart.quantity = 1;
-      this.carts.push(this.cart);
-      this.token.setCart(this.carts);
-      Swal.fire({
-        position: 'center',
-        icon: 'success',
-        title: 'Đã thêm sản phẩm ' + this.cart.name + ' vào giỏ hàng',
-        showConfirmButton: false,
-        timer: 2500
-      });
-    }
-
-  }
-
-
-  getList(size: number) {
-    this.perfumeService.getAll(size).subscribe(next => {
-      this.perfumes = next;
-    }, error => {
-      alert('rỗng');
     });
   }
 

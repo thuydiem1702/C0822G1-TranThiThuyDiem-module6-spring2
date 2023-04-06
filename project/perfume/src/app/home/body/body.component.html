@@ -85,9 +85,9 @@
             <a class="previous" (click)="searchPerfume(nameSearch,number - 1)" *ngIf="!firstPage">
               <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             </a>
-          </div>
+          </div >
           <li *ngFor="let perfume of perfumes">
-            <div class="product-item">
+            <div class="product-item" >
               <div class="product-top">
                 <a href="" class="product-thumb">
                   <img [src]="perfume.image">

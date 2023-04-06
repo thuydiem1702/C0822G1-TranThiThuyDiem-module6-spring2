@@ -4,7 +4,6 @@ import com.be.dto.IOrderDetail;
 import com.be.dto.ITotalCart;
 import com.be.dto.OderDetailDto;
 import com.be.model.cart.Cart;
-import com.be.model.cart.OrderDetail;
 import com.be.model.perfume.Perfume;
 import com.be.model.user.User;
 import com.be.service.ICartService;
