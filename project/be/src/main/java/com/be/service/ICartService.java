@@ -12,7 +12,8 @@ import java.util.Optional;
 public interface ICartService {
     Cart getCartByIdUser(@Param("idUser") Long idUser);
 
-    List<IOrderDetail> getPerfumeInCart(Long iUser);
+//    List<IOrderDetail> getPerfumeInCart(Long iUser);
+    List<IOrderDetail> getPerfumeInCart(Long iUser , String value);
 
     void payPerfume(Long idUser);
 
@@ -25,4 +26,6 @@ public interface ICartService {
     Optional<Cart> findById(Long id);
 
     void updatePaymentStatus(Long idOrderDetail);
+
+
 }

@@ -17,19 +17,19 @@ public class Perfume {
     private Integer quantity;
     private String image;
     private Boolean flagDelete;
-    @JsonBackReference
+//    @JsonBackReference
     @ManyToOne()
     @JoinColumn(name = "id_category", nullable = false, referencedColumnName = "id_category")
     private Category category;
-    @JsonBackReference
+//    @JsonBackReference
     @ManyToOne()
     @JoinColumn(name = "id_concentration", nullable = false, referencedColumnName = "id_concentration")
     private Concentration concentration;
-    @JsonBackReference
+//    @JsonBackReference
     @ManyToOne()
     @JoinColumn(name = "id_fragrant", nullable = false, referencedColumnName = "id_fragrant")
     private Fragrant fragrant;
-    @JsonBackReference
+//    @JsonBackReference
     @ManyToOne()
     @JoinColumn(name = "id_trademark", nullable = false, referencedColumnName = "id_trademark")
     private Trademark trademark;

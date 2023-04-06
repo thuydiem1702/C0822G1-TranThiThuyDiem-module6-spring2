@@ -46,7 +46,7 @@ export class OderCreateComponent implements OnInit {
               private router: Router) {
     this.idUser = parseInt(this.token.getId());
     this.share.getClickEvent().subscribe(next => {
-      this.perfumeService.getPerfumeInCart(this.idUser).subscribe(next => {
+      this.perfumeService.getPerfumeInCart(this.idUser,'cart').subscribe(next => {
         this.order = next;
       });
     });
@@ -63,7 +63,7 @@ export class OderCreateComponent implements OnInit {
       this.userName = this.token.getUsername();
       this.getUserById();
     }
-    this.perfumeService.getPerfumeInCart(this.idUser).subscribe(next => {
+    this.perfumeService.getPerfumeInCart(this.idUser,'cart').subscribe(next => {
       this.order = next;
       console.log(this.order);
 
@@ -110,7 +110,7 @@ export class OderCreateComponent implements OnInit {
       // tslint:disable-next-line:radix
       this.idUser = parseInt(this.idUserTest);
     }
-    this.perfumeService.getPerfumeInCart(this.idUser).subscribe(next => {
+    this.perfumeService.getPerfumeInCart(this.idUser,'').subscribe(next => {
       this.iOderDetailList = next;
       console.log(next);
     }, error => {

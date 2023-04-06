@@ -20,7 +20,7 @@
               <div>
                 <img style="width: 105px;height: 70px" sizes="(max-width: 300px) 100vw, 300px" [src]="cart.image">
                 <h6 class="my-0">{{cart.perfumeName}}</h6>
-                <small class="text-muted">{{(cart.price * cart.quantity) | number}}</small>
+                <small class="text-muted">{{(cart.price * cart.quantity) | number}} </small>
               </div>
               <span class="text-muted">{{cart.quantity|number}}</span>
             </div>
@@ -30,7 +30,7 @@
             </div>
             <div class="list-group-item d-flex justify-content-between">
               <span>Tổng thành tiền</span>
-              <strong>{{totalCart.totalCostUser}}</strong>
+              <strong>{{totalCart.totalCostUser | number}} VNĐ</strong>
             </div>
             <div class="list-group-item d-flex justify-content-between">
               <hr class="mb-4">
@@ -49,11 +49,11 @@
             </div>
             <div class="col-md-12">
               <label for="kh_diachi">Địa chỉ</label>
-              <input type="text" class="form-control mb-3" name="kh_diachi" id="kh_diachi" formControlName="deliveryAddress">
+              <input type="text" class="form-control mb-3" name="kh_diachi" id="kh_diachi" value="{{user.address}}" formControlName="deliveryAddress">
             </div>
             <div class="col-md-12">
               <label for="kh_dienthoai">Điện thoại</label>
-              <input type="text" class="form-control mb-3" name="kh_dienthoai" id="kh_dienthoai" formControlName="deliverPhone">
+              <input type="text" class="form-control mb-3" name="kh_dienthoai" id="kh_dienthoai" value="{{user.phoneNumber}}" formControlName="deliverPhone">
             </div>
           </div>
         </div>

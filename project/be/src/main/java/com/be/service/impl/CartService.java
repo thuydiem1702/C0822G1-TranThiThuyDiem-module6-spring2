@@ -22,10 +22,17 @@ public class CartService implements ICartService {
         return iCartRepository.getCartByIdUser(idUser);
     }
 
-    @Override
-    public List<IOrderDetail> getPerfumeInCart(Long idUser) {
+        @Override
+    public List<IOrderDetail> getPerfumeInCart(Long idUser , String value) {
+        if (value.equals("history")) {
+            return iCartRepository.getCartHistory(idUser);
+        }
         return iCartRepository.getPerfumeInCart(idUser);
     }
+//    @Override
+//    public List<IOrderDetail> getPerfumeInCart(Long idUser) {
+//        return iCartRepository.getPerfumeInCart(idUser);
+//    }
 
     @Override
     public void payPerfume(Long idUser) {

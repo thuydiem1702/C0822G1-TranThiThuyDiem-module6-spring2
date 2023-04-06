@@ -1,0 +1,34 @@
+<div style="text-align: center">
+  <h1>Danh sách lịch sử mua hàng</h1>
+  <div class="row container" *ngIf="iOderDetail.length!=0; else historyIsEmpty">
+    <table class="table table-bordered table-hover" style="background-color: white; margin: 50px 0 50px 70px;
+              box-shadow: 0 0 20px 0 #253365; ">
+      <thead class="table-primary align-middle" style="text-align: center">
+      <tr>
+        <th scope="col">STT</th>
+        <th scope="col">Tên sản phẩm</th>
+        <th scope="col">Số lượng</th>
+        <th scope="col">Giá</th>
+<!--        <th scope="col">Ngày mua</th>-->
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let oderDetail of iOderDetail; index as i" style="text-align: center" class="align-middle">
+        <th scope="row">{{i + 1}}</th>
+        <td>{{oderDetail.perfumeName}}</td>
+        <td>{{oderDetail.quantity}}</td>
+        <td>{{oderDetail.price|number}}₫</td>
+<!--        <td>{{oderDetail.createDate}}</td>-->
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <ng-template #historyIsEmpty>
+    <img src="https://firebasestorage.googleapis.com/v0/b/perfume-3c9a8.appspot.com/o/lovepik-shopping-icon-png-image_400400592_wh1200.png?alt=media&token=e2f2fc5f-1361-41cb-bb9b-789bcca16f8f" height="400" width="600"
+         style="display: flex; margin: 0 auto"/>
+    <div class="d-flex"><h5 style="margin-left: 380px; font-size: 20px; font-family: 'Paypal', sans-serif">Chưa có sản
+      phẩm nào được mua <a routerLink="/">tiếp tục mua sắm nào!</a></h5>
+    </div>
+  </ng-template>
+</div>

@@ -13,5 +13,7 @@ public interface IOrderDetail {
 
     int getQuantity();
 
+    String createDate();
+
     double getMoney();
 }

@@ -33,20 +33,6 @@ export class CartComponent implements OnInit {
       this.getCostTotal();
 
     });
-    // render({
-    //   id: '#myPaypalButtons',
-    //   currency: 'USD',
-    //   value: '100.00',
-    //   onApprove: (details => {
-    //     Swal.fire({
-    //       position: 'center',
-    //       title: 'Thanh toán thành công',
-    //       icon: 'success',
-    //       showConfirmButton: false,
-    //       timer: 2000
-    //     });
-    //   })
-    // });
   }
 
 
@@ -63,40 +49,12 @@ export class CartComponent implements OnInit {
       // tslint:disable-next-line:radix
       this.idUser = parseInt(this.idUserTest);
     }
-    this.perfumeService.getPerfumeInCart(this.idUser).subscribe(next => {
+    this.perfumeService.getPerfumeInCart(this.idUser,'cart').subscribe(next => {
       this.iOderDetailList = next;
-      // tslint:disable-next-line:prefer-for-of
-      // for (let i = 0; i < this.iOderDetailList.length; i++) {
-      //   this.totalMoney += this.iOderDetailList[i].money;
-      //   this.perfumeCount = this.iOderDetailList[i].quantity;
-      // }
-      // this.share.changeData({
-      //   quantity: this.perfumeCount
-      // });
     }, error => {
     });
   }
 
-
-  // payPerfume() {
-  //   this.perfumeService.payPerfume(this.idUser).subscribe(next => {
-  //     Swal.fire({
-  //       position: 'center',
-  //       title: 'Thanh toán thành công',
-  //       icon: 'success',
-  //       showConfirmButton: false,
-  //       timer: 2000
-  //     });
-  //   }, error => {
-  //     Swal.fire({
-  //       position: 'center',
-  //       title: 'Thanh toán thành công',
-  //       icon: 'error',
-  //       showConfirmButton: false,
-  //       timer: 2000
-  //     });
-  //   });
-  // }
   totalCostUser: number;
   oderDetail: IOrderDetail;
 

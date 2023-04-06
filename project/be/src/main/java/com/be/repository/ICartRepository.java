@@ -45,4 +45,8 @@ public interface ICartRepository extends JpaRepository<Cart, Long> {
             nativeQuery = true)
     ITotalCart totalCostUser(@Param("idUser") int idUser);
 
+    @Query(value = "select od.id as idOrder,od.id_perfume as idPerpume,p.name as perfumeName,p.price as price,od.quantity as quantity,\n" +
+            "               c.create_date as createDate,p.price * od.quantity as money from user join cart c on user.id = c.user_id\n" +
+            "                 join order_detail od on c.id = od.cart_id join perfume p on od.id_perfume = p.id_perfume  where user.id = :idUser and c.flag = false group by od.id  order by od.id desc", nativeQuery = true)
+    List<IOrderDetail> getCartHistory(@Param("idUser") Long idUser);
 }

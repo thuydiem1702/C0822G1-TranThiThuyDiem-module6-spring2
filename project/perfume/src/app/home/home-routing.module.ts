@@ -5,6 +5,7 @@ import {CartComponent} from './cart/cart.component';
 import {ProfileComponent} from './profile/profile.component';
 import {DetailPerfumeComponent} from './detail-perfume/detail-perfume.component';
 import {OderCreateComponent} from './cart/oder/oder-create/oder-create.component';
+import {HistoryComponent} from './history/history.component';
 
 
 const routes: Routes = [
@@ -13,7 +14,8 @@ const routes: Routes = [
   {path: 'cart', component: CartComponent},
   {path: 'home/:name', component: BodyComponent},
   {path: 'detail/:id', component: DetailPerfumeComponent},
-  {path: 'oder/create', component: OderCreateComponent}
+  {path: 'oder/create', component: OderCreateComponent},
+  {path: 'history', component: HistoryComponent}
 ];
 
 @NgModule({

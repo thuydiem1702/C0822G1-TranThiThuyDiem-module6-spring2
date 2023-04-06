@@ -109,11 +109,17 @@ public class PerfumeController {
         return new ResponseEntity<>(cart, HttpStatus.OK);
     }
 
-    @GetMapping("/get-perfume-in-cart/{idUser}")
-    public ResponseEntity<List<IOrderDetail>> getPerfumeInCart(@PathVariable("idUser") Long idUser) {
-        List<IOrderDetail> orderDetailList = cartService.getPerfumeInCart(idUser);
+    @GetMapping("/get-perfume-in-cart/{idUser}/{value}")
+    public ResponseEntity<List<IOrderDetail>> getPerfumeInCart(@PathVariable("idUser") Long idUser, @PathVariable("value") String value) {
+        List<IOrderDetail> orderDetailList = cartService.getPerfumeInCart(idUser, value);
         return new ResponseEntity<>(orderDetailList, HttpStatus.OK);
     }
+
+//    @GetMapping("/get-perfume-in-cart/{idUser}")
+//    public ResponseEntity<List<IOrderDetail>> getPerfumeInCart(@PathVariable("idUser") Long idUser) {
+//        List<IOrderDetail> orderDetailList = cartService.getPerfumeInCart(idUser);
+//        return new ResponseEntity<>(orderDetailList, HttpStatus.OK);
+//    }
 
     @GetMapping("/pay-perfume/{idUser}")
     public ResponseEntity<?> payPerfume(@PathVariable("idUser") Long idUser) {

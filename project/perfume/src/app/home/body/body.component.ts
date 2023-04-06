@@ -88,7 +88,9 @@ export class BodyComponent implements OnInit {
       this.totalPages = data.totalPages;
       this.first = data.first;
       this.last = data.last;
+      console.log(this.perfumesByQuantitySold);
     });
+
   }
 
   searchPerfume(name: string, page: number) {
